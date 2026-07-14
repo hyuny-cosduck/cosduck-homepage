@@ -37,15 +37,11 @@ function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/96 backdrop-blur-sm border-b border-gray-200 shadow-sm"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm"
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
         <a href="#">
-          <CosduckLogo dark={!scrolled} />
+          <CosduckLogo />
         </a>
 
         <div className="hidden md:flex items-center gap-7 text-sm font-medium">
@@ -53,7 +49,7 @@ function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className={`transition-colors hover:opacity-70 ${scrolled ? "text-gray-700" : "text-white/80"}`}
+              className="text-gray-600 transition-colors hover:text-black"
             >
               {l.label}
             </a>
@@ -69,7 +65,7 @@ function Nav() {
         </a>
 
         <button
-          className={`md:hidden ${scrolled ? "text-gray-700" : "text-white"}`}
+          className="md:hidden text-gray-700"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="메뉴"
         >
@@ -179,17 +175,15 @@ function Sub({ children, light = false }: { children: React.ReactNode; light?: b
 // ─── HERO ────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center bg-black text-white overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center bg-white overflow-hidden">
       {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, #000 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
-      {/* Top gradient fade */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent" />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20">
         {/* Badge */}
@@ -201,7 +195,7 @@ function Hero() {
           TikTok Shop Agency
         </span>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.05] tracking-tight mb-6">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.05] tracking-tight mb-6 text-black">
           K-뷰티 브랜드의
           <br />
           <span style={{ color: ORANGE }}>글로벌 틱톡샵</span>
@@ -209,11 +203,11 @@ function Hero() {
           성장 파트너
         </h1>
 
-        <p className="text-xl text-white/55 max-w-lg mb-10 leading-relaxed">
+        <p className="text-xl text-gray-500 max-w-lg mb-10 leading-relaxed">
           데이터 기반 운영 · 자체 분석 솔루션 · 크리에이터 네트워크
           <br />
           성과로 증명되는 성장 파트너,{" "}
-          <span className="font-black text-white">
+          <span className="font-black text-black">
             <span style={{ color: ORANGE }}>c</span>osduck
           </span>
         </p>
@@ -236,7 +230,7 @@ function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mt-20 pt-10 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { value: 64,  suffix: "B+",  label: "2025 틱톡샵 글로벌 GMV", prefix: "$",  color: BLUE   },
             { value: 600, suffix: "K/월", label: "최고 매출 브랜드 (US)",  prefix: "$",  color: BLUE   },
@@ -247,7 +241,7 @@ function Hero() {
               <div className="text-3xl md:text-4xl font-black" style={{ color: s.color }}>
                 {s.prefix}<Counter value={s.value} suffix={s.suffix} />
               </div>
-              <div className="text-sm text-white/45 mt-1">{s.label}</div>
+              <div className="text-sm text-gray-400 mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -497,35 +491,35 @@ function TrackRecord() {
   ];
 
   return (
-    <Section id="track-record" bg="bg-[#0B1628]">
+    <Section id="track-record" bg="bg-gray-50">
       <Badge>Track Record</Badge>
-      <Title light>북미·인도네시아에서, 최단기간에 매출 최상위권에 올렸습니다</Title>
-      <Sub light>대행 시작 단 4개월 만에 브랜드A를 T5(월 매출 $600K)까지, 브랜드B는 런칭 6주 만에 T4를 달성했습니다.</Sub>
+      <Title>북미·인도네시아에서, 최단기간에 매출 최상위권에 올렸습니다</Title>
+      <Sub>대행 시작 단 4개월 만에 브랜드A를 T5(월 매출 $600K)까지, 브랜드B는 런칭 6주 만에 T4를 달성했습니다.</Sub>
 
       <div className="grid md:grid-cols-3 gap-5">
         {brands.map((b) => (
-          <div key={b.label} className="rounded-2xl border border-white/10 p-8 bg-white/5">
+          <div key={b.label} className="rounded-2xl border border-gray-200 p-8 bg-white">
             <span
               className="inline-block px-3 py-1 rounded-full text-black text-xs font-bold mb-6"
               style={{ backgroundColor: ORANGE }}
             >
               {b.label}
             </span>
-            <h3 className="text-xl font-black text-white mb-6 leading-snug">{b.title}</h3>
+            <h3 className="text-xl font-black text-black mb-6 leading-snug">{b.title}</h3>
             <div className="grid grid-cols-3 gap-3 mb-6">
               {b.metrics.map((m) => (
                 <div key={m.unit}>
                   <div className="text-2xl font-black" style={{ color: ORANGE }}>{m.val}</div>
-                  <div className="text-xs text-white/45 mt-1">{m.unit}</div>
+                  <div className="text-xs text-gray-400 mt-1">{m.unit}</div>
                 </div>
               ))}
             </div>
-            <p className="text-xs text-white/40 border-t border-white/10 pt-4">{b.note}</p>
+            <p className="text-xs text-gray-400 border-t border-gray-100 pt-4">{b.note}</p>
           </div>
         ))}
       </div>
 
-      <p className="mt-6 text-center text-xs text-white/25">
+      <p className="mt-6 text-center text-xs text-gray-400">
         * 실제 운영 데이터 기준이며, 샵·상품에 따라 결과는 달라질 수 있습니다.
       </p>
     </Section>
