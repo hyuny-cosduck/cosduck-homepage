@@ -1,17 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const ORANGE = "#F5A623";
 const BLUE   = "#2196F3";
 
 // ─── Logo ────────────────────────────────────────────────────────────────────
-function CosduckLogo({ dark = false }: { dark?: boolean }) {
+function CosduckLogo() {
   return (
-    <span className={`font-black tracking-tight text-xl ${dark ? "text-white" : "text-black"}`}>
-      <span style={{ color: ORANGE }}>c</span>osduck
-    </span>
+    <Image src="/cosduck-logo.png" alt="Cosduck" width={120} height={36} priority />
   );
 }
 
@@ -225,13 +224,13 @@ function Hero() {
         {/* Stats */}
         <div className="mt-20 pt-10 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: 600,    suffix: "K/월", label: "파트너 브랜드 월 최고 매출 (US)", prefix: "$" },
-            { value: 29619,  suffix: "개",   label: "6주 누적 판매 달성",              prefix: ""  },
-            { value: 500,    suffix: "명+",  label: "글로벌 크리에이터 네트워크",       prefix: ""  },
-            { value: 4,      suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: ""  },
+            { value: 600,   suffix: "K/월", label: "파트너 브랜드 월 최고 매출 (US)", prefix: "$", color: BLUE   },
+            { value: 29619, suffix: "개",   label: "6주 누적 판매 달성",              prefix: "",  color: BLUE   },
+            { value: 500,   suffix: "명+",  label: "글로벌 크리에이터 네트워크",       prefix: "",  color: ORANGE },
+            { value: 4,     suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: "",  color: ORANGE },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-3xl md:text-4xl font-black" style={{ color: ORANGE }}>
+              <div className="text-3xl md:text-4xl font-black" style={{ color: s.color }}>
                 {s.prefix}<Counter value={s.value} suffix={s.suffix} />
               </div>
               <div className="text-sm text-gray-400 mt-1">{s.label}</div>
@@ -724,13 +723,13 @@ function Roadmap() {
 // ─── TEAM ────────────────────────────────────────────────────────────────────
 function Team() {
   const members = [
-    { role: "팀장", name: "Hyuny", strength: "틱톡팀 운영 경력 2년, 다수 브랜드 런칭·총괄", result: "자체 운영 툴 AX 개발, 북미·ID 시장 동시 운영" },
-    { role: "전담 AM", name: "Jade", strength: "데이터 기반 성과 분석·최적화", result: "브랜드C GMV Max ROI 0.5→1.3 개선" },
-    { role: "전담 AM", name: "Dani", strength: "영상 콘텐츠 기획·제작 디렉팅", result: "브랜드B 일매출 1800만원 달성" },
-    { role: "전담 AM", name: "Lucy", strength: "메디컬·뷰티 카테고리 전문 셀링", result: "신규 SKU 런칭 2주 내 리뷰 50+건 확보" },
-    { role: "전담 AM", name: "Jenna", strength: "트렌드 분석·콘텐츠 기획", result: "월 28,000건 어필리에이트 제안 발송" },
-    { role: "전담 AM", name: "Elena", strength: "퍼포먼스 광고 세팅·최적화", result: "브랜드C 캠페인 일 주문 500건 달성" },
-    { role: "전담 AM", name: "Rin", strength: "글로벌 크리에이터 소싱·관리", result: "북미 크리에이터 풀 500명+ 구축·운영" },
+    { role: "팀장",   name: "Hyuny", strength: "틱톡팀 운영 경력 2년, 다수 브랜드 런칭·총괄" },
+    { role: "전담 AM", name: "Jade",  strength: "데이터 기반 성과 분석·최적화" },
+    { role: "전담 AM", name: "Dani",  strength: "영상 콘텐츠 기획·제작 디렉팅" },
+    { role: "전담 AM", name: "Lucy",  strength: "메디컬·뷰티 카테고리 전문 셀링" },
+    { role: "전담 AM", name: "Jenna", strength: "트렌드 분석·콘텐츠 기획" },
+    { role: "전담 AM", name: "Elena", strength: "퍼포먼스 광고 세팅·최적화" },
+    { role: "전담 AM", name: "Rin",   strength: "글로벌 크리에이터 소싱·관리" },
   ];
 
   return (
@@ -746,7 +745,6 @@ function Team() {
               <th className="px-5 py-4 text-left font-semibold">역할</th>
               <th className="px-5 py-4 text-left font-semibold">이름</th>
               <th className="px-5 py-4 text-left font-semibold hidden md:table-cell">핵심 강점</th>
-              <th className="px-5 py-4 text-left font-semibold hidden lg:table-cell">주요 실적</th>
             </tr>
           </thead>
           <tbody>
@@ -764,7 +762,6 @@ function Team() {
                 </td>
                 <td className="px-5 py-4 font-bold text-black">{m.name}</td>
                 <td className="px-5 py-4 text-gray-500 hidden md:table-cell">{m.strength}</td>
-                <td className="px-5 py-4 text-gray-700 font-medium hidden lg:table-cell">{m.result}</td>
               </tr>
             ))}
           </tbody>
