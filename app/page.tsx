@@ -225,10 +225,10 @@ function Hero() {
         {/* Stats */}
         <div className="mt-20 pt-10 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: 64,  suffix: "B+",  label: "2025 틱톡샵 글로벌 GMV", prefix: "$"  },
-            { value: 600, suffix: "K/월", label: "최고 매출 브랜드 (US)",  prefix: "$"  },
-            { value: 500, suffix: "명+",  label: "글로벌 크리에이터 풀",   prefix: ""   },
-            { value: 7,   suffix: "개월", label: "집중 성장 로드맵",        prefix: ""   },
+            { value: 600,    suffix: "K/월", label: "파트너 브랜드 월 최고 매출 (US)", prefix: "$" },
+            { value: 29619,  suffix: "개",   label: "6주 누적 판매 달성",              prefix: ""  },
+            { value: 500,    suffix: "명+",  label: "글로벌 크리에이터 네트워크",       prefix: ""  },
+            { value: 4,      suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: ""  },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-3xl md:text-4xl font-black" style={{ color: ORANGE }}>
