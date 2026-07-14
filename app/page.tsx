@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const ORANGE = "#F5A623";
+const BLUE   = "#2196F3";
 
 // ─── Logo ────────────────────────────────────────────────────────────────────
 function CosduckLogo({ dark = false }: { dark?: boolean }) {
@@ -193,10 +194,10 @@ function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20">
         {/* Badge */}
         <span
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-black text-xs font-bold mb-8"
-          style={{ backgroundColor: ORANGE }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs font-bold mb-8"
+          style={{ backgroundColor: BLUE }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-black" />
+          <span className="w-1.5 h-1.5 rounded-full bg-white" />
           TikTok Shop Agency
         </span>
 
@@ -227,7 +228,8 @@ function Hero() {
           </a>
           <a
             href="#track-record"
-            className="inline-flex items-center justify-center px-8 py-4 border border-white/25 text-white font-medium rounded-full text-base hover:bg-white/10 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 text-white font-bold rounded-full text-base transition-opacity hover:opacity-80"
+            style={{ backgroundColor: BLUE }}
           >
             성과 보기
           </a>
@@ -236,13 +238,13 @@ function Hero() {
         {/* Stats */}
         <div className="mt-20 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: 64, suffix: "B+", label: "2025 틱톡샵 글로벌 GMV", prefix: "$" },
-            { value: 600, suffix: "K/월", label: "최고 매출 브랜드 (US)", prefix: "$" },
-            { value: 500, suffix: "명+", label: "글로벌 크리에이터 풀", prefix: "" },
-            { value: 7, suffix: "개월", label: "집중 성장 로드맵", prefix: "" },
+            { value: 64,  suffix: "B+",  label: "2025 틱톡샵 글로벌 GMV", prefix: "$",  color: BLUE   },
+            { value: 600, suffix: "K/월", label: "최고 매출 브랜드 (US)",  prefix: "$",  color: BLUE   },
+            { value: 500, suffix: "명+",  label: "글로벌 크리에이터 풀",   prefix: "",   color: ORANGE },
+            { value: 7,   suffix: "개월", label: "집중 성장 로드맵",        prefix: "",   color: ORANGE },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-3xl md:text-4xl font-black" style={{ color: ORANGE }}>
+              <div className="text-3xl md:text-4xl font-black" style={{ color: s.color }}>
                 {s.prefix}<Counter value={s.value} suffix={s.suffix} />
               </div>
               <div className="text-sm text-white/45 mt-1">{s.label}</div>
@@ -286,17 +288,17 @@ function WhyNow() {
       <div className="grid md:grid-cols-3 gap-5">
         {cards.map((c) => (
           <div key={c.num} className="bg-white rounded-2xl p-8 border border-gray-100">
-            <div className="text-sm font-black mb-1" style={{ color: ORANGE }}>{c.num}</div>
+            <div className="text-sm font-black mb-1" style={{ color: BLUE }}>{c.num}</div>
             <h3 className="text-xl font-bold mb-5 text-black">{c.title}</h3>
             <ul className="space-y-2 mb-6">
               {c.facts.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-gray-600 text-sm">
-                  <span className="mt-0.5 font-bold" style={{ color: ORANGE }}>·</span>
+                  <span className="mt-0.5 font-bold" style={{ color: BLUE }}>·</span>
                   {f}
                 </li>
               ))}
             </ul>
-            <div className="pt-5 border-t border-gray-100 text-sm font-semibold" style={{ color: ORANGE }}>
+            <div className="pt-5 border-t border-gray-100 text-sm font-semibold" style={{ color: BLUE }}>
               {c.tagline}
             </div>
           </div>
@@ -304,11 +306,11 @@ function WhyNow() {
       </div>
 
       <div
-        className="mt-6 rounded-2xl px-8 py-5 text-center font-semibold text-base text-black"
-        style={{ backgroundColor: ORANGE }}
+        className="mt-6 rounded-2xl px-8 py-5 text-center font-semibold text-base text-white"
+        style={{ backgroundColor: BLUE }}
       >
         성장하는 채널 × 열려 있는 시장 × 세계 2위 K-뷰티.{" "}
-        <span className="underline decoration-black/30">먼저 올라탄 브랜드가 선점합니다.</span>
+        <span className="underline decoration-white/40">먼저 올라탄 브랜드가 선점합니다.</span>
       </div>
     </Section>
   );
@@ -392,12 +394,12 @@ function Solution() {
       <div className="grid md:grid-cols-3 gap-5">
         {solutions.map((s) => (
           <div key={s.num} className="bg-white rounded-2xl border border-gray-100 p-8">
-            <div className="text-sm font-black mb-1" style={{ color: ORANGE }}>{s.num}</div>
+            <div className="text-sm font-black mb-1" style={{ color: BLUE }}>{s.num}</div>
             <h3 className="text-xl font-bold mb-3 text-black">{s.title}</h3>
             <p className="text-gray-500 text-sm mb-4">{s.desc}</p>
             <div
               className="rounded-xl p-4 text-sm font-medium text-black mb-3"
-              style={{ backgroundColor: `${ORANGE}18` }}
+              style={{ backgroundColor: `${BLUE}12` }}
             >
               {s.highlight}
             </div>
@@ -545,8 +547,8 @@ function Services() {
       <div className="grid md:grid-cols-2 gap-5">
         <div className="bg-white rounded-2xl p-8 border border-gray-200">
           <span
-            className="inline-block px-4 py-2 rounded-full text-black text-sm font-bold mb-6"
-            style={{ backgroundColor: ORANGE }}
+            className="inline-block px-4 py-2 rounded-full text-white text-sm font-bold mb-6"
+            style={{ backgroundColor: BLUE }}
           >
             코스덕 업무 범위
           </span>
@@ -604,8 +606,8 @@ function Pricing() {
       <div className="grid md:grid-cols-2 gap-5 mb-8">
         <div className="bg-black text-white rounded-2xl p-8">
           <span
-            className="inline-block px-4 py-2 rounded-full text-black text-sm font-bold mb-6"
-            style={{ backgroundColor: ORANGE }}
+            className="inline-block px-4 py-2 rounded-full text-white text-sm font-bold mb-6"
+            style={{ backgroundColor: BLUE }}
           >
             파트너십 비용 구조
           </span>
@@ -630,8 +632,8 @@ function Pricing() {
 
         <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
           <span
-            className="inline-block px-4 py-2 rounded-full text-black text-sm font-bold mb-6"
-            style={{ backgroundColor: ORANGE }}
+            className="inline-block px-4 py-2 rounded-full text-white text-sm font-bold mb-6"
+            style={{ backgroundColor: BLUE }}
           >
             7개월 예상 성과 요약
           </span>
@@ -708,8 +710,8 @@ function Roadmap() {
         {months.map((m, i) => (
           <div key={i} className="flex items-center gap-5 bg-white rounded-xl px-6 py-5 border border-gray-100">
             <div
-              className="w-10 h-10 rounded-full text-black text-sm font-black flex items-center justify-center shrink-0"
-              style={{ backgroundColor: ORANGE }}
+              className="w-10 h-10 rounded-full text-white text-sm font-black flex items-center justify-center shrink-0"
+              style={{ backgroundColor: i < 3 ? BLUE : ORANGE }}
             >
               {i + 1}
             </div>
@@ -804,7 +806,12 @@ function Contact() {
               { icon: "👤", label: "담당자", value: "임 현 | 코스덕 총괄" },
             ].map((c) => (
               <div key={c.label}>
-                <div className="text-3xl mb-2">{c.icon}</div>
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto mb-3"
+                  style={{ backgroundColor: `${BLUE}25` }}
+                >
+                  {c.icon}
+                </div>
                 <div className="text-xs text-white/35 mb-1">{c.label}</div>
                 <div className="font-semibold text-white text-sm">{c.value}</div>
               </div>
