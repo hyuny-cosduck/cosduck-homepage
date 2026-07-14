@@ -869,34 +869,31 @@ function Contact() {
 // ─── FOOTER ──────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="bg-gray-100 border-t border-gray-200 pt-10 pb-8">
+    <footer className="bg-gray-100 border-t border-gray-200 pt-8 pb-6">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-8">
-          {/* Logo + tagline */}
-          <div>
+        {/* Top row: logo + legal links */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-3">
             <CosduckLogo />
-            <p className="text-gray-400 text-sm mt-3 leading-relaxed">
-              K-뷰티 브랜드의 글로벌 틱톡샵 성장 파트너
-            </p>
+            <span className="text-gray-400 text-sm hidden sm:inline">|</span>
+            <span className="text-gray-600 text-sm font-medium hidden sm:inline">(주)마야크루</span>
           </div>
-
-          {/* Contact */}
-          <div className="text-sm text-gray-500 space-y-1">
-            <p className="font-semibold text-gray-700 mb-2">Contact</p>
-            <p>hyuny@cosduck.com</p>
+          <div className="flex items-center gap-4 text-sm text-gray-500">
+            <a href="/terms" className="hover:text-black transition-colors">이용약관</a>
+            <span className="text-gray-300">|</span>
+            <a href="/privacy" className="hover:text-black transition-colors font-semibold">개인정보처리방침</a>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-200 pt-6 space-y-1.5">
+        {/* Business info */}
+        <div className="border-t border-gray-200 pt-5 space-y-1.5">
           <p className="text-xs text-gray-400 leading-relaxed">
-            상호: (주)마야크루 &nbsp;|&nbsp; 대표: 오준호 &nbsp;|&nbsp; 사업자등록번호: 875-81-00475
-            &nbsp;|&nbsp; 법인등록번호: 110111-6212601
+            대표: 오준호 &nbsp;|&nbsp; 사업자등록번호: 875-81-00475 &nbsp;|&nbsp; 법인등록번호: 110111-6212601
           </p>
           <p className="text-xs text-gray-400">
-            사업장 소재지: 서울특별시 마포구 와우산로 121, 3층(서교동)
+            주소: 서울특별시 마포구 와우산로 121, 3층(서교동) &nbsp;|&nbsp; 이메일: hyuny@cosduck.com
           </p>
-          <p className="text-xs text-gray-400 mt-3">
+          <p className="text-xs text-gray-400 pt-2">
             Copyright © Cosduck. All rights reserved.
           </p>
         </div>
