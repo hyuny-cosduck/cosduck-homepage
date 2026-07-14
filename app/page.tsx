@@ -225,13 +225,13 @@ function Hero() {
         {/* Stats */}
         <div className="mt-20 pt-10 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: 64,  suffix: "B+",  label: "2025 틱톡샵 글로벌 GMV", prefix: "$",  color: BLUE   },
-            { value: 600, suffix: "K/월", label: "최고 매출 브랜드 (US)",  prefix: "$",  color: BLUE   },
-            { value: 500, suffix: "명+",  label: "글로벌 크리에이터 풀",   prefix: "",   color: ORANGE },
-            { value: 7,   suffix: "개월", label: "집중 성장 로드맵",        prefix: "",   color: ORANGE },
+            { value: 64,  suffix: "B+",  label: "2025 틱톡샵 글로벌 GMV", prefix: "$"  },
+            { value: 600, suffix: "K/월", label: "최고 매출 브랜드 (US)",  prefix: "$"  },
+            { value: 500, suffix: "명+",  label: "글로벌 크리에이터 풀",   prefix: ""   },
+            { value: 7,   suffix: "개월", label: "집중 성장 로드맵",        prefix: ""   },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-3xl md:text-4xl font-black" style={{ color: s.color }}>
+              <div className="text-3xl md:text-4xl font-black" style={{ color: ORANGE }}>
                 {s.prefix}<Counter value={s.value} suffix={s.suffix} />
               </div>
               <div className="text-sm text-gray-400 mt-1">{s.label}</div>
@@ -791,7 +791,7 @@ function Contact() {
         </p>
 
         <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8 mb-8">
-          <div className="grid sm:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-2 gap-6 text-center max-w-xs mx-auto">
             {[
               { icon: "📧", label: "Email", value: "hyuny@cosduck.com" },
               { icon: "👤", label: "담당자", value: "임 현 | 코스덕 총괄" },
