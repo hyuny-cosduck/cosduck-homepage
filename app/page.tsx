@@ -721,9 +721,20 @@ function Roadmap() {
 }
 
 // ─── TEAM ────────────────────────────────────────────────────────────────────
+// avatar gradient palettes — cycles through brand colors
+const AVATAR_COLORS = [
+  { from: ORANGE, to: "#F5C842" },
+  { from: BLUE,   to: "#64B5F6" },
+  { from: BLUE,   to: "#64B5F6" },
+  { from: ORANGE, to: "#F5C842" },
+  { from: BLUE,   to: "#64B5F6" },
+  { from: ORANGE, to: "#F5C842" },
+  { from: BLUE,   to: "#64B5F6" },
+];
+
 function Team() {
   const members = [
-    { role: "팀장",   name: "Hyuny", strength: "틱톡팀 운영 경력 2년, 다수 브랜드 런칭·총괄" },
+    { role: "팀장",    name: "Hyuny", strength: "틱톡팀 운영 경력 2년, 다수 브랜드 런칭·총괄" },
     { role: "전담 AM", name: "Jade",  strength: "데이터 기반 성과 분석·최적화" },
     { role: "전담 AM", name: "Dani",  strength: "영상 콘텐츠 기획·제작 디렉팅" },
     { role: "전담 AM", name: "Lucy",  strength: "메디컬·뷰티 카테고리 전문 셀링" },
@@ -733,39 +744,69 @@ function Team() {
   ];
 
   return (
-    <Section id="team" bg="bg-white">
+    <Section id="team" bg="bg-gray-50">
       <Badge>Team</Badge>
       <Title>전담은 1명, 역량은 팀 전체</Title>
       <Sub>브랜드별 전담 AM이 1:1로 책임지고, 팀장과 팀 전체가 함께 백업합니다. 전 구성원이 해외 경험을 갖춰 글로벌 크리에이터 협업을 직접 수행합니다.</Sub>
 
-      <div className="rounded-2xl border border-gray-200 overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="bg-black text-white">
-              <th className="px-5 py-4 text-left font-semibold">역할</th>
-              <th className="px-5 py-4 text-left font-semibold">이름</th>
-              <th className="px-5 py-4 text-left font-semibold hidden md:table-cell">핵심 강점</th>
-            </tr>
-          </thead>
-          <tbody>
-            {members.map((m, i) => (
-              <tr key={m.name} className={`border-t border-gray-100 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
-                <td className="px-5 py-4">
-                  <span
-                    className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${
-                      m.role === "팀장" ? "text-black" : "bg-gray-100 text-gray-600"
-                    }`}
-                    style={m.role === "팀장" ? { backgroundColor: ORANGE } : {}}
-                  >
-                    {m.role}
-                  </span>
-                </td>
-                <td className="px-5 py-4 font-bold text-black">{m.name}</td>
-                <td className="px-5 py-4 text-gray-500 hidden md:table-cell">{m.strength}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Leader card — full width */}
+      {members.slice(0, 1).map((m, i) => (
+        <div
+          key={m.name}
+          className="mb-5 bg-white rounded-2xl border border-gray-100 p-6 flex items-center gap-6 shadow-sm"
+        >
+          <div
+            className="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-black shrink-0"
+            style={{ background: `linear-gradient(135deg, ${AVATAR_COLORS[i].from}, ${AVATAR_COLORS[i].to})` }}
+          >
+            {m.name[0]}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-lg font-black text-black">{m.name}</span>
+              <span
+                className="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold text-black"
+                style={{ backgroundColor: ORANGE }}
+              >
+                {m.role}
+              </span>
+            </div>
+            <p className="text-gray-500 text-sm">{m.strength}</p>
+          </div>
+          <div className="hidden md:flex items-center gap-1.5 text-xs text-gray-400 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: ORANGE }} />
+            전담 AM 팀 총괄
+          </div>
+        </div>
+      ))}
+
+      {/* AM cards — 3-column grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {members.slice(1).map((m, i) => (
+          <div
+            key={m.name}
+            className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-lg font-black shrink-0"
+                style={{ background: `linear-gradient(135deg, ${AVATAR_COLORS[i + 1].from}, ${AVATAR_COLORS[i + 1].to})` }}
+              >
+                {m.name[0]}
+              </div>
+              <div>
+                <div className="font-black text-black text-base">{m.name}</div>
+                <span
+                  className="inline-block px-2 py-0.5 rounded-full text-xs font-semibold text-white mt-0.5"
+                  style={{ backgroundColor: BLUE }}
+                >
+                  {m.role}
+                </span>
+              </div>
+            </div>
+            <p className="text-gray-500 text-sm leading-relaxed">{m.strength}</p>
+          </div>
+        ))}
       </div>
     </Section>
   );
