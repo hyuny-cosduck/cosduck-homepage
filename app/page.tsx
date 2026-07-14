@@ -437,10 +437,15 @@ function CoreAdvantages() {
             desc: "틱톡샵의 반복 업무를 AX 시스템으로 처리합니다. 인력을 성장에 집중시킵니다.",
           },
         ].map((a) => (
-          <div key={a.title} className="bg-black text-white rounded-2xl p-8">
-            <div className="text-4xl mb-4">{a.icon}</div>
-            <h3 className="text-lg font-bold mb-3">{a.title}</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">{a.desc}</p>
+          <div key={a.title} className="bg-white rounded-2xl p-8 border border-gray-200">
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5"
+              style={{ backgroundColor: `${BLUE}15` }}
+            >
+              {a.icon}
+            </div>
+            <h3 className="text-lg font-bold mb-3 text-black">{a.title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed">{a.desc}</p>
           </div>
         ))}
       </div>
@@ -492,7 +497,7 @@ function TrackRecord() {
   ];
 
   return (
-    <Section id="track-record" bg="bg-black">
+    <Section id="track-record" bg="bg-[#0B1628]">
       <Badge>Track Record</Badge>
       <Title light>북미·인도네시아에서, 최단기간에 매출 최상위권에 올렸습니다</Title>
       <Sub light>대행 시작 단 4개월 만에 브랜드A를 T5(월 매출 $600K)까지, 브랜드B는 런칭 6주 만에 T4를 달성했습니다.</Sub>
@@ -785,20 +790,20 @@ function Team() {
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 function Contact() {
   return (
-    <Section id="contact" bg="bg-black">
+    <Section id="contact" bg="bg-white">
       <div className="max-w-2xl mx-auto text-center">
         <Badge>Next Step</Badge>
-        <Title light>
+        <Title>
           브랜드 맞춤 시뮬레이션을
           <br />
           무료로 받아보세요
         </Title>
-        <p className="mt-3 mb-10 text-white/50 text-lg leading-relaxed">
+        <p className="mt-3 mb-10 text-gray-500 text-lg leading-relaxed">
           30분 무료 진단 미팅에서 브랜드에 맞는 성장 로드맵과 예상 프로젝션을 제공합니다.
           1개월 세팅 → 6개월 성장 파트너십으로 함께합니다.
         </p>
 
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
+        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8 mb-8">
           <div className="grid sm:grid-cols-3 gap-6 text-center">
             {[
               { icon: "📞", label: "Phone", value: "010.3027.0750" },
@@ -808,12 +813,12 @@ function Contact() {
               <div key={c.label}>
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto mb-3"
-                  style={{ backgroundColor: `${BLUE}25` }}
+                  style={{ backgroundColor: `${BLUE}18` }}
                 >
                   {c.icon}
                 </div>
-                <div className="text-xs text-white/35 mb-1">{c.label}</div>
-                <div className="font-semibold text-white text-sm">{c.value}</div>
+                <div className="text-xs text-gray-400 mb-1">{c.label}</div>
+                <div className="font-semibold text-gray-900 text-sm">{c.value}</div>
               </div>
             ))}
           </div>
@@ -827,7 +832,7 @@ function Contact() {
           무료 진단 미팅 신청하기 →
         </a>
 
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5 text-sm text-white/35">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5 text-sm text-gray-400">
           <span>✅ 무료 진단 미팅 (30분)</span>
           <span>✅ 브랜드 맞춤 시뮬레이션 제공</span>
           <span>✅ 1개월 세팅 → 6개월 파트너십</span>
@@ -840,10 +845,10 @@ function Contact() {
 // ─── FOOTER ──────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10 py-8">
+    <footer className="bg-gray-100 border-t border-gray-200 py-8">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
-        <CosduckLogo dark />
-        <p className="text-white/25 text-sm">Copyright © Cosduck. All rights reserved.</p>
+        <CosduckLogo />
+        <p className="text-gray-400 text-sm">Copyright © Cosduck. All rights reserved.</p>
       </div>
     </footer>
   );
