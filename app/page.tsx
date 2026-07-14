@@ -800,7 +800,6 @@ function Contact() {
         <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8 mb-8">
           <div className="grid sm:grid-cols-3 gap-6 text-center">
             {[
-              { icon: "📞", label: "Phone", value: "010.3027.0750" },
               { icon: "📧", label: "Email", value: "hyuny@cosduck.com" },
               { icon: "👤", label: "담당자", value: "임 현 | 코스덕 총괄" },
             ].map((c) => (
