@@ -226,7 +226,7 @@ function Hero() {
           {[
             { value: 600,   suffix: "K/월", label: "파트너 브랜드 월 최고 매출 (US)", prefix: "$", color: BLUE   },
             { value: 29619, suffix: "개",   label: "6주 누적 판매 달성",              prefix: "",  color: BLUE   },
-            { value: 500,   suffix: "명+",  label: "글로벌 크리에이터 네트워크",       prefix: "",  color: ORANGE },
+            { value: 8,     suffix: "개",   label: "파트너 브랜드 운영 (1년)",          prefix: "",  color: ORANGE },
             { value: 4,     suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: "",  color: ORANGE },
           ].map((s) => (
             <div key={s.label}>
