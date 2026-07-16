@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const ORANGE = "#F5A623";
@@ -9,9 +10,7 @@ const BLUE   = "#2196F3";
 // ─── Logo ────────────────────────────────────────────────────────────────────
 function CosduckLogo() {
   return (
-    <span className="text-xl font-black tracking-tight">
-      <span style={{ color: ORANGE }}>c</span>osduck
-    </span>
+    <Image src="/cosduck-logo.png" alt="Cosduck" width={120} height={36} priority />
   );
 }
 
@@ -165,10 +164,164 @@ function Sub({ children, light = false }: { children: React.ReactNode; light?: b
   );
 }
 
-// ─── HERO ────────────────────────────────────────────────────────────────────
-function Hero() {
+// ─── Contact Modal ────────────────────────────────────────────────────────────
+function ContactModal({ onClose }: { onClose: () => void }) {
+  const [form, setForm] = useState({ brand: "", name: "", meetingType: "유선", hasTiktokShop: "아니오", direction: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(res.ok ? "done" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex flex-col justify-center bg-white overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      <div
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-black text-xl">✕</button>
+
+        {status === "done" ? (
+          <div className="text-center py-8">
+            <div className="text-4xl mb-4">🎉</div>
+            <p className="text-xl font-black mb-2">신청 완료!</p>
+            <p className="text-gray-500 text-sm">빠른 시일 내에 연락드리겠습니다.</p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="mailto:hyuny@cosduck.com"
+                className="px-6 py-2.5 rounded-full border border-gray-200 text-gray-600 font-bold text-sm hover:border-black hover:text-black transition-colors"
+              >
+                담당자에게 이메일 보내기
+              </a>
+              <button onClick={onClose} className="px-6 py-2.5 rounded-full text-black font-bold text-sm" style={{ backgroundColor: ORANGE }}>닫기</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-xl font-black mb-1">무료 진단 미팅 신청</h2>
+            <p className="text-gray-400 text-sm mb-6">아래 정보를 입력하시면 빠른 시일 내로 연락드리겠습니다.</p>
+            <form onSubmit={submit} className="space-y-4">
+              <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 *</label>
+                <input required value={form.brand} onChange={(e) => set("brand", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 코스덕" />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">담당자 (직함 포함) *</label>
+                <input required value={form.name} onChange={(e) => set("name", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 김마케팅 대리" />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">미팅 선호 방식 *</label>
+                <div className="flex gap-2">
+                  {["유선", "대면", "비대면"].map((v) => (
+                    <button key={v} type="button" onClick={() => set("meetingType", v)}
+                      className={`flex-1 py-2 rounded-xl text-sm font-bold border transition-colors ${form.meetingType === v ? "bg-black text-white border-black" : "border-gray-200 text-gray-500"}`}>
+                      {v}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 *</label>
+                <div className="flex gap-2">
+                  {["예", "아니오"].map((v) => (
+                    <button key={v} type="button" onClick={() => set("hasTiktokShop", v)}
+                      className={`flex-1 py-2 rounded-xl text-sm font-bold border transition-colors ${form.hasTiktokShop === v ? "bg-black text-white border-black" : "border-gray-200 text-gray-500"}`}>
+                      {v}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 *</label>
+                <input required value={form.direction} onChange={(e) => set("direction", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 틱톡샵 풀 대행, 크리에이터 운영 중심" />
+              </div>
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="w-full py-3.5 rounded-full text-black font-bold text-sm transition-opacity hover:opacity-80 disabled:opacity-50 mt-2"
+                style={{ backgroundColor: ORANGE }}
+              >
+                {status === "loading" ? "전송 중..." : "신청하기 →"}
+              </button>
+              {status === "error" && <p className="text-red-500 text-xs text-center">오류가 발생했습니다. 다시 시도해주세요.</p>}
+            </form>
+            <a href="mailto:hyuny@cosduck.com" className="block text-center text-xs text-gray-400 hover:text-gray-600 transition-colors mt-4">
+              이메일로 문의하기
+            </a>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Floating CTA ────────────────────────────────────────────────────────────
+function FloatingCTA({ onOpenModal }: { onOpenModal: () => void }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    let heroVisible = true;
+    let contactVisible = false;
+
+    const update = () => setVisible(!heroVisible && !contactVisible);
+
+    const heroObserver = new IntersectionObserver(
+      ([e]) => { heroVisible = e.isIntersecting; update(); },
+      { threshold: 0.1 }
+    );
+    const contactObserver = new IntersectionObserver(
+      ([e]) => { contactVisible = e.isIntersecting; update(); },
+      { threshold: 0.1 }
+    );
+
+    const hero = document.querySelector("#hero");
+    const contact = document.querySelector("#contact");
+    if (hero) heroObserver.observe(hero);
+    if (contact) contactObserver.observe(contact);
+
+    return () => { heroObserver.disconnect(); contactObserver.disconnect(); };
+  }, []);
+
+  return (
+    <>
+      <div
+        className="fixed bottom-8 left-1/2 z-40 transition-all duration-500"
+        style={{
+          transform: `translateX(-50%) translateY(${visible ? "0px" : "20px"})`,
+          opacity: visible ? 1 : 0,
+          pointerEvents: visible ? "auto" : "none",
+        }}
+      >
+        <button
+          onClick={onOpenModal}
+          className="inline-flex items-center gap-2 px-7 py-4 text-black font-bold rounded-full text-sm shadow-2xl hover:opacity-80 transition-opacity"
+          style={{ backgroundColor: ORANGE }}
+        >
+          무료 진단 미팅 신청하기 →
+        </button>
+      </div>
+    </>
+  );
+}
+
+// ─── HERO ────────────────────────────────────────────────────────────────────
+function Hero({ onOpenModal }: { onOpenModal: () => void }) {
+  return (
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center bg-white overflow-hidden">
       {/* Subtle dot grid */}
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -199,20 +352,17 @@ function Hero() {
         <p className="text-xl text-gray-500 max-w-lg mb-10 leading-relaxed">
           데이터 기반 운영 · 자체 분석 솔루션 · 크리에이터 네트워크
           <br />
-          성과로 증명되는 성장 파트너,{" "}
-          <span className="font-black text-black">
-            <span style={{ color: ORANGE }}>c</span>osduck
-          </span>
+          성과로 증명되는 성장 파트너, Cosduck.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#contact"
+          <button
+            onClick={onOpenModal}
             className="inline-flex items-center justify-center px-8 py-4 text-black font-bold rounded-full text-base transition-opacity hover:opacity-80"
             style={{ backgroundColor: ORANGE }}
           >
             무료 진단 미팅 신청 →
-          </a>
+          </button>
           <a
             href="#track-record"
             className="inline-flex items-center justify-center px-8 py-4 text-white font-bold rounded-full text-base transition-opacity hover:opacity-80"
@@ -814,7 +964,7 @@ function Team() {
 }
 
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
-function Contact() {
+function Contact({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <Section id="contact" bg="bg-white">
       <div className="max-w-2xl mx-auto text-center">
@@ -849,13 +999,13 @@ function Contact() {
           </div>
         </div>
 
-        <a
-          href="mailto:hyuny@cosduck.com"
+        <button
+          onClick={onOpenModal}
           className="inline-flex items-center justify-center px-10 py-5 text-black font-black text-lg rounded-full transition-opacity hover:opacity-85"
           style={{ backgroundColor: ORANGE }}
         >
           무료 진단 미팅 신청하기 →
-        </a>
+        </button>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5 text-sm text-gray-400">
           <span>✅ 무료 진단 미팅 (30분)</span>
@@ -905,11 +1055,14 @@ function Footer() {
 
 // ─── PAGE ────────────────────────────────────────────────────────────────────
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
       <Nav />
+      {modalOpen && <ContactModal onClose={() => setModalOpen(false)} />}
+      <FloatingCTA onOpenModal={() => setModalOpen(true)} />
       <main>
-        <Hero />
+        <Hero onOpenModal={() => setModalOpen(true)} />
         <WhyNow />
         <Problem />
         <Solution />
@@ -919,7 +1072,7 @@ export default function Home() {
         <Pricing />
         <Roadmap />
         <Team />
-        <Contact />
+        <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
     </>
