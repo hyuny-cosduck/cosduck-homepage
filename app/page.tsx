@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const ORANGE = "#F5A623";
@@ -10,7 +9,9 @@ const BLUE   = "#2196F3";
 // ─── Logo ────────────────────────────────────────────────────────────────────
 function CosduckLogo() {
   return (
-    <Image src="/cosduck-logo.png" alt="Cosduck" width={120} height={36} priority />
+    <span className="text-xl font-black tracking-tight">
+      <span style={{ color: ORANGE }}>c</span>osduck
+    </span>
   );
 }
 
