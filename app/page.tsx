@@ -70,7 +70,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
           className="hidden md:inline-flex items-center px-5 py-2.5 text-black text-sm font-bold rounded-full transition-opacity hover:opacity-80"
           style={{ backgroundColor: ORANGE }}
         >
-          미팅 신청
+          상담 신청
         </button>
 
         <button
@@ -115,7 +115,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
             style={{ backgroundColor: ORANGE }}
             onClick={() => { setMenuOpen(false); onOpenModal(); }}
           >
-            미팅 신청
+            상담 신청
           </button>
         </div>
       )}
@@ -244,7 +244,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
           </div>
         ) : (
           <>
-            <h2 className="text-xl font-black mb-1">미팅 신청</h2>
+            <h2 className="text-xl font-black mb-1">상담 신청</h2>
             <p className="text-gray-400 text-sm mb-6">아래 정보를 입력하시면 빠른 시일 내로 연락드리겠습니다.</p>
             <form onSubmit={submit} className="space-y-4">
               <div>
@@ -583,7 +583,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
             style={{ backgroundColor: ORANGE }}
           >
-            미팅 신청 →
+            상담 신청 →
           </button>
           <a
             href="#case-study"
@@ -1179,7 +1179,7 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
           className="inline-flex items-center justify-center px-8 py-4 text-black font-black text-sm rounded-full transition-opacity hover:opacity-85"
           style={{ backgroundColor: ORANGE }}
         >
-          진단 미팅 신청하기 →
+          진단 상담 신청하기 →
         </button>
       </div>
     </Section>
