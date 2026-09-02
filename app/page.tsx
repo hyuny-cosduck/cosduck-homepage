@@ -15,7 +15,7 @@ function CosduckLogo() {
 }
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
-function Nav({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
+function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpenModal: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
@@ -65,13 +65,13 @@ function Nav({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
           )}
         </div>
 
-        <a
-          href="#contact"
+        <button
+          onClick={onOpenModal}
           className="hidden md:inline-flex items-center px-5 py-2.5 text-black text-sm font-bold rounded-full transition-opacity hover:opacity-80"
           style={{ backgroundColor: ORANGE }}
         >
           무료 진단 미팅
-        </a>
+        </button>
 
         <button
           className="md:hidden text-gray-700"
@@ -110,14 +110,13 @@ function Nav({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
               </a>
             )
           )}
-          <a
-            href="#contact"
-            className="mt-4 block text-center px-5 py-3 text-black text-sm font-bold rounded-full"
+          <button
+            className="mt-4 block w-full text-center px-5 py-3 text-black text-sm font-bold rounded-full"
             style={{ backgroundColor: ORANGE }}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => { setMenuOpen(false); onOpenModal(); }}
           >
             무료 진단 미팅
-          </a>
+          </button>
         </div>
       )}
       </div>
@@ -249,15 +248,15 @@ function ContactModal({ onClose }: { onClose: () => void }) {
             <p className="text-gray-400 text-sm mb-6">아래 정보를 입력하시면 빠른 시일 내로 연락드리겠습니다.</p>
             <form onSubmit={submit} className="space-y-4">
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 *</label>
+                <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 <span className="text-red-500">*</span></label>
                 <input required value={form.brand} onChange={(e) => set("brand", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 코스덕" />
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">담당자 (직함 포함) *</label>
+                <label className="text-xs font-bold text-gray-500 block mb-1">담당자 (직함 포함) <span className="text-red-500">*</span></label>
                 <input required value={form.name} onChange={(e) => set("name", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 김마케팅 대리" />
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">담당자 연락처 *</label>
+                <label className="text-xs font-bold text-gray-500 block mb-1">담당자 연락처 <span className="text-red-500">*</span></label>
                 <input required value={form.contact} onChange={(e) => set("contact", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) name@company.com 또는 010-1234-5678" />
               </div>
               <div>
@@ -265,18 +264,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                 <input value={form.brandSite} onChange={(e) => set("brandSite", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) https://www.yourbrand.com" />
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">미팅 선호 방식 *</label>
-                <div className="flex gap-2">
-                  {["유선", "대면", "비대면"].map((v) => (
-                    <button key={v} type="button" onClick={() => set("meetingType", v)}
-                      className={`flex-1 py-2 rounded-xl text-sm font-bold border transition-colors ${form.meetingType === v ? "bg-black text-white border-black" : "border-gray-200 text-gray-500"}`}>
-                      {v}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 *</label>
+                <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 <span className="text-red-500">*</span></label>
                 <div className="flex gap-2">
                   {["예", "아니오"].map((v) => (
                     <button key={v} type="button" onClick={() => set("hasTiktokShop", v)}
@@ -287,8 +275,8 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 *</label>
-                <input required value={form.direction} onChange={(e) => set("direction", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 틱톡샵 풀 대행, 크리에이터 운영 중심" />
+                <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 (선택)</label>
+                <input value={form.direction} onChange={(e) => set("direction", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 틱톡샵 풀 대행, 크리에이터 운영 중심" />
               </div>
               <button
                 type="submit"
@@ -349,15 +337,12 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
       >
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-black text-xl">✕</button>
 
-        <div className="mb-2">
-          <CosduckLogo />
-        </div>
-        <h2 className="text-xl font-black mb-1 text-black">간단 정보 입력 후 바로 열람하실 수 있습니다.</h2>
-        <p className="text-gray-400 text-sm mb-6">서비스 소개서를 확인하시려면 아래 정보를 입력해 주세요.</p>
+        <h2 className="text-base sm:text-xl font-black mb-1 text-black">간단 정보 입력 후 바로 열람하실 수 있습니다.</h2>
+        <p className="text-gray-400 text-xs sm:text-sm mb-6">서비스 소개서를 확인하시려면 아래 정보를 입력해 주세요.</p>
 
         <form onSubmit={submit} className="space-y-4">
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 *</label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 <span className="text-red-500">*</span></label>
             <input
               required
               value={form.brand}
@@ -367,7 +352,7 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
             />
           </div>
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">담당자명 *</label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">담당자명 <span className="text-red-500">*</span></label>
             <input
               required
               value={form.name}
@@ -377,22 +362,13 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
             />
           </div>
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">연락처 (이메일 또는 전화번호) *</label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">연락처 (이메일 또는 전화번호) <span className="text-red-500">*</span></label>
             <input
               required
               value={form.contact}
               onChange={(e) => set("contact", e.target.value)}
               className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
               placeholder="예) name@company.com 또는 010-1234-5678"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">브랜드 사이트</label>
-            <input
-              value={form.brandSite}
-              onChange={(e) => set("brandSite", e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
-              placeholder="예) https://www.yourbrand.com"
             />
           </div>
           <div>
@@ -424,9 +400,8 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
             </div>
           </div>
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 *</label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 (선택)</label>
             <input
-              required
               value={form.direction}
               onChange={(e) => set("direction", e.target.value)}
               className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
@@ -443,7 +418,7 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
           </button>
         </form>
 
-        <p className="text-xs text-gray-400 text-center mt-4">
+        <p className="text-[10px] sm:text-xs text-gray-400 text-center mt-4">
           (주)마야크루 · 정보 수집 및 제공 동의, 개인정보 수집 및 이용 동의
         </p>
       </div>
@@ -531,9 +506,8 @@ function FloatingCTA({ onOpenModal }: { onOpenModal: () => void }) {
   useEffect(() => {
     let heroVisible = true;
     let contactVisible = false;
-    let partnerFitVisible = false;
 
-    const update = () => setVisible(!heroVisible && !contactVisible && !partnerFitVisible);
+    const update = () => setVisible(!heroVisible && !contactVisible);
 
     const heroObserver = new IntersectionObserver(
       ([e]) => { heroVisible = e.isIntersecting; update(); },
@@ -543,19 +517,13 @@ function FloatingCTA({ onOpenModal }: { onOpenModal: () => void }) {
       ([e]) => { contactVisible = e.isIntersecting; update(); },
       { threshold: 0.1 }
     );
-    const partnerFitObserver = new IntersectionObserver(
-      ([e]) => { partnerFitVisible = e.isIntersecting; update(); },
-      { threshold: 0.1 }
-    );
 
     const hero = document.querySelector("#hero");
     const contact = document.querySelector("#contact");
-    const partnerFit = document.querySelector("#partner-fit");
     if (hero) heroObserver.observe(hero);
     if (contact) contactObserver.observe(contact);
-    if (partnerFit) partnerFitObserver.observe(partnerFit);
 
-    return () => { heroObserver.disconnect(); contactObserver.disconnect(); partnerFitObserver.disconnect(); };
+    return () => { heroObserver.disconnect(); contactObserver.disconnect(); };
   }, []);
 
   return (
@@ -604,7 +572,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
         </span>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-5 text-black">
-          K-뷰티 브랜드의 <span style={{ color: ORANGE }}>글로벌 틱톡샵</span> 성장 파트너
+          K‑뷰티 브랜드의 <span style={{ color: ORANGE }}>글로벌 틱톡샵</span> 성장 파트너
         </h1>
 
         <p className="text-base text-gray-500 max-w-lg mb-8 leading-relaxed">
@@ -613,7 +581,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
           성과로 증명되는 성장 파트너, Cosduck.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-row gap-3">
           <button
             onClick={onOpenModal}
             className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
@@ -668,17 +636,17 @@ function WhyNow() {
     },
     {
       num: "03",
-      title: "세계 2위로 올라선 K-뷰티",
+      title: "세계 2위로 올라선 K‑뷰티",
       facts: ["한국 화장품 수출 $11.4B", "세계 2위 수출국 · 최대시장 미국 $2.2B", "뷰티 = 틱톡샵 1위 카테고리"],
-      tagline: "세계가 인정한 K-뷰티, 지금이 기회",
+      tagline: "세계가 인정한 K‑뷰티, 지금이 기회",
     },
   ];
 
   return (
     <Section id="why-now" bg="bg-gray-50">
       <Badge>Why Now</Badge>
-      <Title>지금이 K-뷰티 × 틱톡샵의 골든타임입니다</Title>
-      <Sub>폭발하는 채널, 열려 있는 핵심 시장, 세계 2위로 올라선 K-뷰티. 세 흐름이 지금 겹칩니다.</Sub>
+      <Title>지금이 K‑뷰티 × 틱톡샵의 골든타임입니다</Title>
+      <Sub>폭발하는 채널, 열려 있는 핵심 시장, 세계 2위로 올라선 K‑뷰티. 세 흐름이 지금 겹칩니다.</Sub>
 
       <div className="grid md:grid-cols-3 gap-5">
         {cards.map((c) => (
@@ -704,7 +672,7 @@ function WhyNow() {
         className="mt-6 rounded-2xl px-8 py-5 text-center font-semibold text-base text-white"
         style={{ backgroundColor: BLUE }}
       >
-        성장하는 채널 × 열려 있는 시장 × 세계 2위 K-뷰티.{" "}
+        성장하는 채널 × 열려 있는 시장 × 세계 2위 K‑뷰티.{" "}
         <span className="underline decoration-white/40">먼저 올라탄 브랜드가 선점합니다.</span>
       </div>
     </Section>
@@ -737,8 +705,8 @@ function Problem() {
   return (
     <Section id="problem" bg="bg-white">
       <Badge>Problem</Badge>
-      <Title>K-뷰티 브랜드의 틱톡샵 진출, 왜 실패하는가</Title>
-      <Sub>틱톡샵은 K-뷰티에게 최고의 기회입니다. 하지만 대부분의 브랜드가 첫 6개월 안에 성장 정체를 겪습니다.</Sub>
+      <Title>K‑뷰티 브랜드의 틱톡샵 진출, 왜 실패하는가</Title>
+      <Sub>틱톡샵은 K‑뷰티에게 최고의 기회입니다. 하지만 대부분의 브랜드가 첫 6개월 안에 성장 정체를 겪습니다.</Sub>
 
       <div className="grid md:grid-cols-3 gap-5">
         {problems.map((p) => (
@@ -814,7 +782,7 @@ function CoreAdvantages() {
       <Title>차별화된 자산과 실행력으로 틱톡샵을 성장시킵니다</Title>
       <Sub>코스덕은 수작업 대신 자체 개발한 운영 툴과 자동화 시스템으로 크리에이터, 콘텐츠, 커뮤니티 운영을 통합 관리합니다.</Sub>
 
-      <div className="grid md:grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-2 gap-5">
         {[
           {
             icon: "📊",
@@ -831,26 +799,23 @@ function CoreAdvantages() {
             title: "AX 자동화 시스템",
             desc: "틱톡샵의 반복 업무를 AX 시스템으로 처리합니다. 인력을 성장에 집중시킵니다.",
           },
+          {
+            icon: "📈",
+            title: "통합 분석 대시보드",
+            desc: "주요 지표를 한 화면에 통합, 집중할 곳과 막힌 곳을 동시에 파악합니다.",
+          },
         ].map((a) => (
-          <div key={a.title} className="bg-white rounded-2xl p-8 border border-gray-200">
+          <div key={a.title} className="bg-white rounded-2xl p-5 sm:p-8 border border-gray-200">
             <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5"
+              className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center text-base sm:text-2xl mb-3 sm:mb-5"
               style={{ backgroundColor: `${BLUE}15` }}
             >
               {a.icon}
             </div>
-            <h3 className="text-lg font-bold mb-3 text-black">{a.title}</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">{a.desc}</p>
+            <h3 className="text-xs sm:text-lg font-bold mb-1.5 sm:mb-3 text-black">{a.title}</h3>
+            <p className="text-gray-500 text-[11px] sm:text-sm leading-relaxed">{a.desc}</p>
           </div>
         ))}
-      </div>
-
-      <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-        <h3 className="text-xl font-bold mb-2 text-black">통합 분석 대시보드</h3>
-        <p className="text-gray-500 text-sm leading-relaxed">
-          틱톡샵 매출·크리에이터 성과·주문 상태·GMV MAX 캠페인까지 주요 지표를 한 화면에 통합,{" "}
-          <strong className="text-black">집중할 곳과 막힌 곳을 동시에 파악합니다.</strong>
-        </p>
       </div>
     </Section>
   );
@@ -909,23 +874,23 @@ function CaseStudy() {
 
       <div className="grid md:grid-cols-2 gap-5">
         {brands.map((b) => (
-          <div key={b.label + b.title} className="rounded-2xl border border-gray-200 p-8 bg-white">
+          <div key={b.label + b.title} className="rounded-2xl border border-gray-200 p-5 sm:p-8 bg-white">
             <span
-              className="inline-block px-3 py-1 rounded-full text-black text-xs font-bold mb-6"
+              className="inline-block px-2.5 sm:px-3 py-1 rounded-full text-black text-[10px] sm:text-xs font-bold mb-3 sm:mb-6"
               style={{ backgroundColor: ORANGE }}
             >
               {b.label}
             </span>
-            <h3 className="text-xl font-black text-black mb-6 leading-snug">{b.title}</h3>
-            <div className="grid grid-cols-3 gap-3 mb-6">
+            <h3 className="text-base sm:text-xl font-black text-black mb-3 sm:mb-6 leading-snug">{b.title}</h3>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-3 sm:mb-6 text-center">
               {b.metrics.map((m) => (
                 <div key={m.unit}>
-                  <div className="text-2xl font-black" style={{ color: ORANGE }}>{m.val}</div>
-                  <div className="text-xs text-gray-400 mt-1">{m.unit}</div>
+                  <div className="text-lg sm:text-2xl font-black" style={{ color: ORANGE }}>{m.val}</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 mt-1">{m.unit}</div>
                 </div>
               ))}
             </div>
-            <p className="text-xs text-gray-400 border-t border-gray-100 pt-4">{b.note}</p>
+            <p className="text-[10px] sm:text-xs text-gray-400 border-t border-gray-100 pt-3 sm:pt-4">{b.note}</p>
           </div>
         ))}
       </div>
@@ -1020,7 +985,7 @@ function Services() {
         </div>
       </div>
 
-      <p className="text-xs text-gray-400 text-center">
+      <p className="text-[10px] sm:text-xs text-gray-400 mt-4">
         * 틱톡샵 운영 및 광고 대행의 계약기간은 6개월 단위로 진행되며, 샵 초기 세팅 기간 1개월은 별도로 소요됩니다.
       </p>
     </Section>
@@ -1039,7 +1004,7 @@ function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
       </Sub>
 
       <div className="mb-8">
-        <div className="bg-black text-white rounded-2xl p-8">
+        <div className="bg-black text-white rounded-2xl p-8 text-center">
           <span
             className="inline-block px-4 py-2 rounded-full text-white text-sm font-bold mb-6"
             style={{ backgroundColor: BLUE }}
@@ -1068,13 +1033,13 @@ function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
         style={{ borderColor: `${ORANGE}60`, backgroundColor: `${ORANGE}08` }}
       >
         <p className="text-sm font-black text-black mb-4">
-          🎁 파트너 계약 시 아래 서비스가 패키지에 포함됩니다 — <span style={{ color: ORANGE }}>제품비만 부담하세요</span>
+          🎁 파트너 계약 시 아래 서비스가 패키지에 포함됩니다. <span style={{ color: ORANGE }}>제품비만 부담하세요.</span>
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             {
               label: "AX 봇 운영 서비스",
-              normal: "₩1,900,000/월",
+              normal: "₩2,565,900/월",
               included: "패키지 포함",
               desc: "틱톡샵 반복 운영 업무 자동화 봇",
             },
@@ -1085,25 +1050,25 @@ function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
               desc: "크리에이터 무가 시딩 영상 한 편당 20,000원 상당",
             },
           ].map((b) => (
-            <div key={b.label} className="bg-white rounded-xl p-5 border border-gray-100 flex gap-4 items-start">
+            <div key={b.label} className="bg-white rounded-xl p-3 sm:p-5 border border-gray-100 flex gap-3 sm:gap-4 items-start">
               <div
-                className="mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0 font-black text-black"
+                className="mt-0.5 w-6 h-6 sm:w-8 sm:h-8 rounded-md sm:rounded-lg flex items-center justify-center text-xs sm:text-sm shrink-0 font-black text-black"
                 style={{ backgroundColor: ORANGE }}
               >
                 ✓
               </div>
               <div>
-                <div className="font-black text-black text-sm mb-1">{b.label}</div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs text-gray-400 line-through">{b.normal}</span>
+                <div className="font-black text-black text-[11px] sm:text-sm mb-0.5 sm:mb-1">{b.label}</div>
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
+                  <span className="text-[10px] sm:text-xs text-gray-400 line-through">{b.normal}</span>
                   <span
-                    className="text-xs font-bold text-white px-2 py-0.5 rounded-full"
+                    className="text-[10px] sm:text-xs font-bold text-white px-1.5 sm:px-2 py-0.5 rounded-full"
                     style={{ backgroundColor: BLUE }}
                   >
                     {b.included}
                   </span>
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed">{b.desc}</p>
+                <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed">{b.desc}</p>
               </div>
             </div>
           ))}
@@ -1155,9 +1120,9 @@ function Roadmap() {
 }
 
 // ─── PARTNER FIT ─────────────────────────────────────────────────────────────
-function PartnerFit({ onOpenModal }: { onOpenModal: () => void }) {
+function PartnerFit() {
   return (
-    <Section id="partner-fit" bg="bg-gray-950">
+    <Section id="partner-fit" bg="bg-gray-700">
       <div>
         <Badge>Who We Work With</Badge>
         <Title light>
@@ -1165,21 +1130,20 @@ function PartnerFit({ onOpenModal }: { onOpenModal: () => void }) {
           <br />
           지금 틱톡샵은 포화 시장입니다.
         </Title>
-        <p className="mt-4 mb-10 text-white/50 text-lg leading-relaxed max-w-2xl">
-          틱톡 측에서도 인정한 사실입니다. 현재 T4 브랜드조차 ROAS 1이 나오고 있을 만큼,
-          진입 장벽과 광고 효율 모두 과거보다 훨씬 어려워졌습니다.
+        <p className="mt-4 mb-10 text-white text-sm sm:text-lg leading-relaxed max-w-2xl">
+          T4 브랜드조차 ROAS 1이 나올 만큼, 진입 장벽이 높아졌습니다.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-10">
           {[
-            { icon: "📉", title: "광고 효율 저조", desc: "초기 구간에서는 ROAS보다 데이터 축적과 사용자 반응에 집중해야 합니다. 탄탄함보다 빠른 실험이 먼저입니다." },
-            { icon: "⏳", title: "단기 성과보다 장기 누적", desc: "단기 ROI를 기대한다면 틱톡샵은 맞지 않습니다. 최소 6개월 이상을 내다봐야 하며, 그 기간 동안 아마존과 틱톡 광고를 병행하며 공격적으로 브랜드 인지도를 쌓아야 합니다." },
-            { icon: "💸", title: "진지한 투자 의지 필수", desc: "6개월 만에 자리를 잡는 브랜드도 있지만, 1년 이상 버티는 경우도 있습니다. 흐름을 빠르게 타는 것이 관건이며, 그 전까지 버틸 체력이 반드시 필요합니다." },
+            { icon: "📉", title: "광고 효율 저조", desc: "초기엔 ROAS보다 데이터 축적이 우선입니다." },
+            { icon: "⏳", title: "장기 관점 필수", desc: "최소 6개월 이상 투자할 준비가 필요합니다." },
+            { icon: "💸", title: "버틸 체력이 관건", desc: "빠르게 흐름을 타기 전까지 견딜 여력이 있어야 합니다." },
           ].map((c) => (
-            <div key={c.title} className="rounded-2xl border border-white/10 p-6 bg-white/5">
-              <div className="text-2xl mb-3">{c.icon}</div>
-              <h3 className="font-bold text-white text-sm mb-2">{c.title}</h3>
-              <p className="text-white/40 text-sm leading-relaxed">{c.desc}</p>
+            <div key={c.title} className="rounded-xl sm:rounded-2xl border border-white/10 p-3 sm:p-6 bg-white/5">
+              <div className="text-lg sm:text-2xl mb-1.5 sm:mb-3">{c.icon}</div>
+              <h3 className="font-bold text-white text-[11px] sm:text-sm mb-1 sm:mb-2">{c.title}</h3>
+              <p className="text-white/80 text-[10px] sm:text-sm leading-relaxed">{c.desc}</p>
             </div>
           ))}
         </div>
@@ -1188,24 +1152,13 @@ function PartnerFit({ onOpenModal }: { onOpenModal: () => void }) {
           className="rounded-2xl p-8 border"
           style={{ borderColor: `${ORANGE}50`, backgroundColor: `${ORANGE}10` }}
         >
-          <p className="text-white font-bold text-lg mb-2">
+          <p className="text-white font-bold text-sm sm:text-lg mb-2">
             그럼에도 불구하고, 틱톡샵은 북미 시장 공략에서 절대 놓쳐선 안 될 채널입니다.
           </p>
-          <p className="text-white/60 text-sm leading-relaxed mb-6">
-            포화된 시장일수록 북미 틱톡 문화에 대한 이해도와 틱톡샵 운영 역량이 승패를 가릅니다.
-            글로벌 멤버들로 이루어진 코스덕은 이 현실을 누구보다 잘 알고 있으며,
-            그렇기 때문에 단기 성과보다 장기적으로 함께 성장할 의지가 있는 브랜드와만 파트너십을 맺습니다.
-            투자할 의향이 있다면, 코스덕은 그 투자가 반드시 성과로 돌아올 수 있도록 최선을 다하겠습니다.
+          <p className="text-white text-xs sm:text-sm leading-relaxed mb-6">
+            북미 틱톡 문화에 대한 이해도와 운영 역량이 승패를 가릅니다.
+            코스덕은 장기적으로 함께 성장할 의지가 있는 브랜드와만 파트너십을 맺습니다.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={onOpenModal}
-              className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-              style={{ backgroundColor: ORANGE }}
-            >
-              우리 브랜드에 맞는지 확인하기 →
-            </button>
-          </div>
         </div>
       </div>
     </Section>
@@ -1243,12 +1196,8 @@ function Footer() {
     <footer className="bg-gray-100 border-t border-gray-200 pt-8 pb-6">
       <div className="max-w-6xl mx-auto px-6">
         {/* Top row: logo + legal links */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3">
-            <CosduckLogo />
-            <span className="text-gray-400 text-sm hidden sm:inline">|</span>
-            <span className="text-gray-600 text-sm font-medium hidden sm:inline">(주)마야크루</span>
-          </div>
+        <div className="flex flex-col items-center gap-3 mb-6">
+          <CosduckLogo />
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <a href="/terms" className="hover:text-black transition-colors">이용약관</a>
             <span className="text-gray-300">|</span>
@@ -1257,14 +1206,14 @@ function Footer() {
         </div>
 
         {/* Business info */}
-        <div className="border-t border-gray-200 pt-5 space-y-1.5">
-          <p className="text-xs text-gray-400 leading-relaxed">
+        <div className="border-t border-gray-200 pt-4 space-y-1 text-center">
+          <p className="text-[10px] sm:text-xs text-gray-400 leading-relaxed">
             대표: 오준호 &nbsp;|&nbsp; 사업자등록번호: 875-81-00475 &nbsp;|&nbsp; 법인등록번호: 110111-6212601
           </p>
-          <p className="text-xs text-gray-400">
+          <p className="text-[10px] sm:text-xs text-gray-400">
             주소: 서울특별시 마포구 와우산로 121, 3층(서교동) &nbsp;|&nbsp; 이메일: hyuny@cosduck.com
           </p>
-          <p className="text-xs text-gray-400 pt-2">
+          <p className="text-[10px] sm:text-xs text-gray-400 pt-2">
             Copyright © Cosduck. All rights reserved.
           </p>
         </div>
@@ -1279,7 +1228,7 @@ export default function Home() {
   const [pdfGateOpen, setPdfGateOpen] = useState(false);
   return (
     <>
-      <Nav onOpenPdfGate={() => setPdfGateOpen(true)} />
+      <Nav onOpenPdfGate={() => setPdfGateOpen(true)} onOpenModal={() => setModalOpen(true)} />
       {modalOpen && <ContactModal onClose={() => setModalOpen(false)} />}
       {pdfGateOpen && <PdfGateModal onClose={() => setPdfGateOpen(false)} />}
       <ScrollDots />
@@ -1294,7 +1243,7 @@ export default function Home() {
         <CaseStudy />
         <Pricing onOpenPdfGate={() => setPdfGateOpen(true)} />
         <Roadmap />
-        <PartnerFit onOpenModal={() => setModalOpen(true)} />
+        <PartnerFit />
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
