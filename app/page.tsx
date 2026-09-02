@@ -1186,6 +1186,41 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
   );
 }
 
+// ─── GO GLOBAL POPUP ─────────────────────────────────────────────────────────
+function GoGlobalPopup() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem("go-global-dismissed");
+    if (!dismissed) setOpen(true);
+  }, []);
+
+  const close = () => {
+    setOpen(false);
+    sessionStorage.setItem("go-global-dismissed", "1");
+  };
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={close}>
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="relative max-w-lg w-full" onClick={(e) => e.stopPropagation()}>
+        <button onClick={close} className="absolute -top-3 -right-3 z-10 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-black text-lg">✕</button>
+        <a href="/cosduck-service-intro.pdf" target="_blank" rel="noopener noreferrer" onClick={close}>
+          <Image
+            src="/go-global-popup.png"
+            alt="Go Global with TikTok Shop"
+            width={1120}
+            height={480}
+            className="w-full h-auto rounded-2xl shadow-2xl"
+          />
+        </a>
+      </div>
+    </div>
+  );
+}
+
 // ─── FOOTER ──────────────────────────────────────────────────────────────────
 function Footer() {
   return (
@@ -1243,6 +1278,7 @@ export default function Home() {
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
+      <GoGlobalPopup />
     </>
   );
 }
