@@ -599,7 +599,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
           {[
             { value: 600,   suffix: "K/월", label: "파트너 브랜드 월 최고 매출 (US)", prefix: "$", color: BLUE   },
             { value: 29619, suffix: "개",   label: "6주 누적 판매 달성",              prefix: "",  color: BLUE   },
-            { value: 8,     suffix: "개",   label: "파트너 브랜드 운영 (1년)",          prefix: "",  color: ORANGE },
+            { value: 6,     suffix: "개",   label: "파트너 브랜드 운영 (1년)",          prefix: "",  color: ORANGE },
             { value: 4,     suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: "",  color: ORANGE },
           ].map((s) => (
             <div key={s.label}>
@@ -610,6 +610,82 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── BRAND PARTNERS ──────────────────────────────────────────────────────────
+function BrandPartners() {
+  const brands: { name: string; logo?: string; className?: string }[] = [
+    { name: "Laka", logo: "/brands/laka.png", className: "h-5 sm:h-7" },
+    { name: "Colorgram", logo: "/brands/colorgram.png", className: "h-6 sm:h-8 translate-y-0.5" },
+    { name: "Pongdang", logo: "/brands/pongdang.png", className: "h-4 sm:h-6" },
+    { name: "Glowbeast", logo: "/brands/glowbeast.png", className: "h-7 sm:h-9" },
+    { name: "Zeroid", logo: "/brands/zeroid.png", className: "h-4 sm:h-6" },
+    { name: "Beplain", logo: "/brands/beplain.png", className: "h-7 sm:h-9" },
+  ];
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % brands.length);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [brands.length]);
+
+  return (
+    <section className="py-10 sm:py-14 bg-gray-50 border-y border-gray-100">
+      <div className="max-w-6xl mx-auto px-6">
+        <p className="text-center text-lg sm:text-2xl font-black text-gray-700 mb-8">코스덕과 함께 해온 브랜드들</p>
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 mb-6">
+          {brands.map((b, i) => (
+            <span
+              key={b.name}
+              className="flex items-center justify-center h-10 sm:h-14 transition-all duration-500"
+              style={{
+                opacity: i === active ? 1 : 0.25,
+                transform: i === active ? "scale(1.1)" : "scale(1)",
+              }}
+            >
+              {b.logo ? (
+                <Image src={b.logo} alt={b.name} width={200} height={60} className={`${b.className || "h-6 sm:h-8"} w-auto`} />
+              ) : (
+                <span className="text-xl sm:text-3xl font-black text-gray-800 tracking-tight">{b.name}</span>
+              )}
+            </span>
+          ))}
+        </div>
+        <div className="overflow-hidden">
+          {[
+            ["oliveyoung", "kurly", "dongkook", "tocobo", "whipped", "roundlab", "sungbooneditor"],
+            ["shaishaishai", "lepique", "entropy", "oliveinternational", "dinto", "cisab", "drdiary", "delphyr"],
+            ["ivoskin", "onthelook", "skinandlab", "hetras", "javindeseoul", "redence"],
+          ].map((row, ri) => (
+            <div key={ri} className="relative h-8 sm:h-10 mb-2">
+              <div
+                className="absolute whitespace-nowrap flex items-center gap-6 sm:gap-10"
+                style={{
+                  animation: `${ri % 2 === 0 ? "scrollLeft" : "scrollRight"} ${30 + ri * 5}s linear infinite`,
+                }}
+              >
+                {[...row, ...row].map((name, i) => (
+                  <Image key={`${name}-${i}`} src={`/brands/${name}.png`} alt={name} width={120} height={40} className="h-4 sm:h-5 w-auto opacity-60 shrink-0" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <style jsx>{`
+          @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+          }
+        `}</style>
       </div>
     </section>
   );
@@ -1271,6 +1347,7 @@ export default function Home() {
       <FloatingCTA onOpenModal={() => setPdfGateOpen(true)} />
       <main>
         <Hero onOpenModal={() => setModalOpen(true)} />
+        <BrandPartners />
         <Services />
         <WhyNow />
         <Problem />
