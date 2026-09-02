@@ -1215,8 +1215,10 @@ function GoGlobalPopup() {
             height={480}
             className="w-full h-auto rounded-t-2xl"
           />
-          <div className="bg-white rounded-b-2xl py-3 text-center text-sm font-bold text-black shadow-2xl">
-            Cosduck 서비스 소개서 열람하기 →
+          <div className="bg-white rounded-b-2xl py-4 text-center shadow-2xl">
+            <span className="inline-block px-8 py-3 rounded-full text-white font-bold text-base" style={{ backgroundColor: BLUE }}>
+              Cosduck 서비스 소개서 열람하기 →
+            </span>
           </div>
         </a>
       </div>
