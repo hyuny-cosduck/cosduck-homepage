@@ -1207,14 +1207,17 @@ function GoGlobalPopup() {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <div className="relative max-w-lg w-full" onClick={(e) => e.stopPropagation()}>
         <button onClick={close} className="absolute -top-3 -right-3 z-10 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-black text-lg">✕</button>
-        <a href="/cosduck-service-intro.pdf" target="_blank" rel="noopener noreferrer" onClick={close}>
+        <a href="/cosduck-service-intro.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className="block">
           <Image
             src="/go-global-popup.png"
             alt="Go Global with TikTok Shop"
             width={1120}
             height={480}
-            className="w-full h-auto rounded-2xl shadow-2xl"
+            className="w-full h-auto rounded-t-2xl"
           />
+          <div className="bg-white rounded-b-2xl py-3 text-center text-sm font-bold text-black shadow-2xl">
+            Go Global with TikTok Shop 서비스 소개서 열람하기 →
+          </div>
         </a>
       </div>
     </div>
