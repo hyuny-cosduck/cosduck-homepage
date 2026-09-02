@@ -1216,7 +1216,7 @@ function GoGlobalPopup() {
             className="w-full h-auto rounded-t-2xl"
           />
           <div className="bg-white rounded-b-2xl py-3 text-center text-sm font-bold text-black shadow-2xl">
-            Go Global with TikTok Shop 서비스 소개서 열람하기 →
+            Cosduck 서비스 소개서 열람하기 →
           </div>
         </a>
       </div>
