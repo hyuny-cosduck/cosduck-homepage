@@ -70,7 +70,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
           className="hidden md:inline-flex items-center px-5 py-2.5 text-black text-sm font-bold rounded-full transition-opacity hover:opacity-80"
           style={{ backgroundColor: ORANGE }}
         >
-          무료 진단 미팅
+          미팅 신청
         </button>
 
         <button
@@ -115,7 +115,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
             style={{ backgroundColor: ORANGE }}
             onClick={() => { setMenuOpen(false); onOpenModal(); }}
           >
-            무료 진단 미팅
+            미팅 신청
           </button>
         </div>
       )}
@@ -244,7 +244,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
           </div>
         ) : (
           <>
-            <h2 className="text-xl font-black mb-1">무료 진단 미팅 신청</h2>
+            <h2 className="text-xl font-black mb-1">미팅 신청</h2>
             <p className="text-gray-400 text-sm mb-6">아래 정보를 입력하시면 빠른 시일 내로 연락드리겠습니다.</p>
             <form onSubmit={submit} className="space-y-4">
               <div>
@@ -260,10 +260,6 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                 <input required value={form.contact} onChange={(e) => set("contact", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) name@company.com 또는 010-1234-5678" />
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">브랜드 사이트</label>
-                <input value={form.brandSite} onChange={(e) => set("brandSite", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) https://www.yourbrand.com" />
-              </div>
-              <div>
                 <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 <span className="text-red-500">*</span></label>
                 <div className="flex gap-2">
                   {["예", "아니오"].map((v) => (
@@ -275,8 +271,8 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 (선택)</label>
-                <input value={form.direction} onChange={(e) => set("direction", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 틱톡샵 풀 대행, 크리에이터 운영 중심" />
+                <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 <span className="text-red-500">*</span></label>
+                <input required value={form.direction} onChange={(e) => set("direction", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 틱톡샵 풀 대행, 크리에이터 운영 중심" />
               </div>
               <button
                 type="submit"
@@ -587,7 +583,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
             style={{ backgroundColor: ORANGE }}
           >
-            무료 진단 미팅 신청 →
+            미팅 신청 →
           </button>
           <a
             href="#case-study"
@@ -1174,7 +1170,7 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
         <Title>
           브랜드 맞춤 시뮬레이션을
           <br />
-          무료로 받아보세요
+          지금 바로 받아보세요
         </Title>
         <Sub>담당자: 임 현 | hyuny@cosduck.com</Sub>
 
@@ -1183,7 +1179,7 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
           className="inline-flex items-center justify-center px-8 py-4 text-black font-black text-sm rounded-full transition-opacity hover:opacity-85"
           style={{ backgroundColor: ORANGE }}
         >
-          무료 진단 미팅 신청하기 →
+          진단 미팅 신청하기 →
         </button>
       </div>
     </Section>
