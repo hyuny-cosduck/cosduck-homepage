@@ -1153,7 +1153,7 @@ function PartnerFit() {
           </p>
           <p className="text-white text-xs sm:text-sm leading-relaxed mb-6">
             북미 틱톡 문화에 대한 이해도와 운영 역량이 승패를 가릅니다.
-            코스덕은 장기적으로 함께 성장할 의지가 있는 브랜드와만 파트너십을 맺습니다.
+            코스덕은 장기적으로 함께 성장할 의지가 있는 브랜드 파트너사를 찾고 있습니다.
           </p>
         </div>
       </div>
