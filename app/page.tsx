@@ -118,7 +118,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
         className="block w-full text-center py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
         style={{ backgroundColor: BLUE }}
       >
-        📄 Go Global with TikTok Shop — 서비스 소개서 보기 →
+        📄 Go Global with TikTok Shop — Cosduck 서비스 소개서 보기 →
       </a>
     </nav>
   );
