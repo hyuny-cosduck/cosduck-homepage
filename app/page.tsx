@@ -231,15 +231,25 @@ function ContactModal({ onClose }: { onClose: () => void }) {
           <div className="text-center py-8">
             <div className="text-4xl mb-4">🎉</div>
             <p className="text-xl font-black mb-2">신청 완료!</p>
-            <p className="text-gray-500 text-sm">빠른 시일 내에 연락드리겠습니다.</p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <p className="text-gray-500 text-sm mb-2">빠른 시일 내에 연락드리겠습니다.</p>
+            <p className="text-gray-400 text-xs mb-6">바로 상담 일정을 잡으시려면 아래 버튼을 눌러주세요.</p>
+            <div className="mt-4 flex flex-col gap-3 justify-center">
+              <a
+                href="https://calendar.app.google/MgBaSncV44LqQHVz6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-full text-white font-bold text-sm transition-opacity hover:opacity-80"
+                style={{ backgroundColor: BLUE }}
+              >
+                📅 상담 일정 예약하기
+              </a>
               <a
                 href="mailto:hyuny@cosduck.com"
                 className="px-6 py-2.5 rounded-full border border-gray-200 text-gray-600 font-bold text-sm hover:border-black hover:text-black transition-colors"
               >
                 담당자에게 이메일 보내기
               </a>
-              <button onClick={onClose} className="px-6 py-2.5 rounded-full text-black font-bold text-sm" style={{ backgroundColor: ORANGE }}>닫기</button>
+              <button onClick={onClose} className="px-6 py-2.5 text-gray-400 text-sm">닫기</button>
             </div>
           </div>
         ) : (
