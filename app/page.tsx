@@ -626,76 +626,124 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
 }
 
 // ─── BRAND PARTNERS ──────────────────────────────────────────────────────────
-function BrandPartners() {
-  const brands: { name: string; logo?: string; className?: string }[] = [
-    { name: "Laka", logo: "/brands/laka.png", className: "h-5 sm:h-7" },
-    { name: "Colorgram", logo: "/brands/colorgram.png", className: "h-6 sm:h-8 translate-y-0.5" },
-    { name: "Pongdang", logo: "/brands/pongdang.png", className: "h-4 sm:h-6" },
-    { name: "Glowbeast", logo: "/brands/glowbeast.png", className: "h-7 sm:h-9" },
-    { name: "Zeroid", logo: "/brands/zeroid.png", className: "h-4 sm:h-6" },
-    { name: "Beplain", logo: "/brands/beplain.png", className: "h-7 sm:h-9" },
-  ];
-  const [active, setActive] = useState(0);
-
+function useTickerKeyframes() {
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % brands.length);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [brands.length]);
+    const id = "ticker-keyframes";
+    if (document.getElementById(id)) return;
+    const style = document.createElement("style");
+    style.id = id;
+    style.textContent = `
+      @keyframes tickerLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      @keyframes tickerRight {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  }, []);
+}
+
+function TickerRow({ items, duration, reverse, height }: { items: { name: string; logo: string; className?: string }[]; duration: number; reverse?: boolean; height: string }) {
+  const renderGroup = (keyPrefix: string) => (
+    <div className="flex items-center gap-8 sm:gap-14 pr-8 sm:pr-14 shrink-0">
+      {items.map((b) => (
+        <Image
+          key={`${keyPrefix}-${b.name}`}
+          src={b.logo}
+          alt={b.name}
+          width={200}
+          height={60}
+          loading="eager"
+          className={`${b.className || "h-5 sm:h-7"} w-auto shrink-0 opacity-70`}
+        />
+      ))}
+    </div>
+  );
+  return (
+    <div className={`${height} overflow-hidden`}>
+      <div
+        className="flex w-max h-full items-center"
+        style={{
+          animation: `${reverse ? "tickerRight" : "tickerLeft"} ${duration}s linear infinite`,
+        }}
+      >
+        {renderGroup("a")}
+        {renderGroup("b")}
+      </div>
+    </div>
+  );
+}
+
+function BrandPartners() {
+  useTickerKeyframes();
+  const partners = [
+    { name: "Laka", logo: "/brands/laka.png", className: "h-4 sm:h-6" },
+    { name: "Colorgram", logo: "/brands/colorgram.png", className: "h-5 sm:h-7 translate-y-0.5" },
+    { name: "Pongdang", logo: "/brands/pongdang.png", className: "h-3 sm:h-5" },
+    { name: "Glowbeast", logo: "/brands/glowbeast.png", className: "h-6 sm:h-8" },
+    { name: "Zeroid", logo: "/brands/zeroid.png", className: "h-3 sm:h-5" },
+    { name: "Beplain", logo: "/brands/beplain.png", className: "h-5 sm:h-7" },
+    { name: "Heeda", logo: "/brands/heeda.png", className: "h-5 sm:h-7" },
+    { name: "Kimchip", logo: "/brands/kimchip.png", className: "h-5 sm:h-7" },
+  ];
+
+  const seedingRows = [
+    [
+      { name: "oliveyoung", logo: "/brands/oliveyoung.png", className: "h-6 sm:h-8" },
+      { name: "kurly", logo: "/brands/kurly.png", className: "h-6 sm:h-8" },
+      { name: "dongkook", logo: "/brands/dongkook.png", className: "h-6 sm:h-8" },
+      { name: "tocobo", logo: "/brands/tocobo.png", className: "h-4 sm:h-5" },
+      { name: "whipped", logo: "/brands/whipped.png" },
+      { name: "roundlab", logo: "/brands/roundlab.png" },
+      { name: "sungbooneditor", logo: "/brands/sungbooneditor.png" },
+      { name: "ndp", logo: "/brands/ndp.png", className: "h-4 sm:h-5" },
+    ],
+    [
+      { name: "shaishaishai", logo: "/brands/shaishaishai.png" },
+      { name: "lepique", logo: "/brands/lepique.png", className: "h-4 sm:h-5" },
+      { name: "entropy", logo: "/brands/entropy.png" },
+      { name: "oliveinternational", logo: "/brands/oliveinternational.png" },
+      { name: "dinto", logo: "/brands/dinto.png" },
+      { name: "cisab", logo: "/brands/cisab.png", className: "h-4 sm:h-5" },
+      { name: "drdiary", logo: "/brands/drdiary.png" },
+      { name: "delphyr", logo: "/brands/delphyr.png" },
+    ],
+    [
+      { name: "ivoskin", logo: "/brands/ivoskin.png" },
+      { name: "onthelook", logo: "/brands/onthelook.png" },
+      { name: "skinandlab", logo: "/brands/skinandlab.png", className: "h-4 sm:h-5" },
+      { name: "hetras", logo: "/brands/hetras.png" },
+      { name: "javindeseoul", logo: "/brands/javindeseoul.png" },
+      { name: "redence", logo: "/brands/redence.png" },
+      { name: "blancnature", logo: "/brands/blancnature.png", className: "h-3 sm:h-5" },
+      { name: "qforet", logo: "/brands/qforet.png" },
+      { name: "cellfusionc", logo: "/brands/cellfusionc.png", className: "h-3 sm:h-4" },
+    ],
+    [
+      { name: "ongredients", logo: "/brands/ongredients.png" },
+      { name: "skin1004", logo: "/brands/skin1004.png", className: "h-7 sm:h-10" },
+      { name: "dalpha", logo: "/brands/dalpha.png" },
+      { name: "rejuran", logo: "/brands/rejuran.png", className: "h-6 sm:h-9" },
+      { name: "abib", logo: "/brands/abib.png", className: "h-4 sm:h-5" },
+      { name: "hapakristin", logo: "/brands/hapakristin.png", className: "h-3 sm:h-5" },
+      { name: "maxclinic", logo: "/brands/maxclinic.png" },
+      { name: "ruminae", logo: "/brands/ruminae.png", className: "h-4 sm:h-5" },
+    ],
+  ];
 
   return (
     <section className="py-10 sm:py-14 bg-gray-50 border-y border-gray-100">
       <div className="max-w-6xl mx-auto px-6">
-        <p className="text-center text-lg sm:text-2xl font-black text-gray-700 mb-8">코스덕과 함께 해온 브랜드들</p>
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 mb-6">
-          {brands.map((b, i) => (
-            <span
-              key={b.name}
-              className="flex items-center justify-center h-10 sm:h-14 transition-all duration-500"
-              style={{
-                opacity: i === active ? 1 : 0.25,
-                transform: i === active ? "scale(1.1)" : "scale(1)",
-              }}
-            >
-              {b.logo ? (
-                <Image src={b.logo} alt={b.name} width={200} height={60} className={`${b.className || "h-6 sm:h-8"} w-auto`} />
-              ) : (
-                <span className="text-xl sm:text-3xl font-black text-gray-800 tracking-tight">{b.name}</span>
-              )}
-            </span>
-          ))}
-        </div>
-        <div className="overflow-hidden">
-          {[
-            ["oliveyoung", "kurly", "dongkook", "tocobo", "whipped", "roundlab", "sungbooneditor"],
-            ["shaishaishai", "lepique", "entropy", "oliveinternational", "dinto", "cisab", "drdiary", "delphyr"],
-            ["ivoskin", "onthelook", "skinandlab", "hetras", "javindeseoul", "redence"],
-          ].map((row, ri) => (
-            <div key={ri} className="relative h-8 sm:h-10 mb-2">
-              <div
-                className="absolute whitespace-nowrap flex items-center gap-6 sm:gap-10"
-                style={{
-                  animation: `${ri % 2 === 0 ? "scrollLeft" : "scrollRight"} ${30 + ri * 5}s linear infinite`,
-                }}
-              >
-                {[...row, ...row].map((name, i) => (
-                  <Image key={`${name}-${i}`} src={`/brands/${name}.png`} alt={name} width={120} height={40} className="h-4 sm:h-5 w-auto opacity-60 shrink-0" />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <style jsx>{`
-          @keyframes scrollLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          @keyframes scrollRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-        `}</style>
+        <p className="text-center text-lg sm:text-2xl font-black text-gray-700 mb-6">코스덕과 함께 해온 브랜드들</p>
+      </div>
+      <div className="space-y-2">
+        <TickerRow items={partners} duration={25} reverse height="h-10 sm:h-14" />
+        {seedingRows.map((row, ri) => (
+          <TickerRow key={ri} items={row} duration={30 + ri * 5} reverse={ri % 2 === 1} height="h-8 sm:h-10" />
+        ))}
       </div>
     </section>
   );
@@ -1272,45 +1320,6 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
   );
 }
 
-// ─── GO GLOBAL POPUP ─────────────────────────────────────────────────────────
-function GoGlobalPopup() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem("go-global-dismissed");
-    if (!dismissed) setOpen(true);
-  }, []);
-
-  const close = () => {
-    setOpen(false);
-    sessionStorage.setItem("go-global-dismissed", "1");
-  };
-
-  if (!open) return null;
-
-  return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={close}>
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-      <div className="relative max-w-lg w-full" onClick={(e) => e.stopPropagation()}>
-        <button onClick={close} className="absolute -top-3 -right-3 z-10 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:text-black text-lg">✕</button>
-        <a href="/cosduck-service-intro.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className="block">
-          <Image
-            src="/go-global-popup.png"
-            alt="Go Global with TikTok Shop"
-            width={1120}
-            height={480}
-            className="w-full h-auto rounded-t-2xl"
-          />
-          <div className="bg-white rounded-b-2xl py-4 text-center shadow-2xl">
-            <span className="inline-block px-8 py-3 rounded-full text-white font-bold text-base" style={{ backgroundColor: BLUE }}>
-              Cosduck 서비스 소개서 열람하기 →
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-  );
-}
 
 // ─── FOOTER ──────────────────────────────────────────────────────────────────
 function Footer() {
@@ -1370,7 +1379,6 @@ export default function Home() {
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
-      <GoGlobalPopup />
     </>
   );
 }
