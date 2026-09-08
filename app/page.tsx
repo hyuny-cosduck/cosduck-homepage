@@ -193,7 +193,7 @@ function Sub({ children, light = false }: { children: React.ReactNode; light?: b
 
 // ─── Contact Modal ────────────────────────────────────────────────────────────
 function ContactModal({ onClose }: { onClose: () => void }) {
-  const [form, setForm] = useState({ brand: "", name: "", contact: "", brandSite: "", meetingType: "유선", hasTiktokShop: "아니오", direction: "" });
+  const [form, setForm] = useState({ brand: "", company: "", name: "", email: "", phone: "", brandSite: "", meetingType: "유선", hasTiktokShop: "아니오", direction: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
@@ -258,6 +258,10 @@ function ContactModal({ onClose }: { onClose: () => void }) {
             <p className="text-gray-400 text-sm mb-6">아래 정보를 입력하시면 빠른 시일 내로 연락드리겠습니다.</p>
             <form onSubmit={submit} className="space-y-4">
               <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">기업명 <span className="text-red-500">*</span></label>
+                <input required value={form.company} onChange={(e) => set("company", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) (주)마야크루" />
+              </div>
+              <div>
                 <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 <span className="text-red-500">*</span></label>
                 <input required value={form.brand} onChange={(e) => set("brand", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 코스덕" />
               </div>
@@ -266,8 +270,12 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                 <input required value={form.name} onChange={(e) => set("name", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 김마케팅 대리" />
               </div>
               <div>
-                <label className="text-xs font-bold text-gray-500 block mb-1">담당자 연락처 <span className="text-red-500">*</span></label>
-                <input required value={form.contact} onChange={(e) => set("contact", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) name@company.com 또는 010-1234-5678" />
+                <label className="text-xs font-bold text-gray-500 block mb-1">이메일 <span className="text-red-500">*</span></label>
+                <input required type="email" value={form.email} onChange={(e) => set("email", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) name@company.com" />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-gray-500 block mb-1">전화번호 <span className="text-red-500">*</span></label>
+                <input required type="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black" placeholder="예) 010-1234-5678" />
               </div>
               <div>
                 <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 <span className="text-red-500">*</span></label>
@@ -306,7 +314,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
 
 // ─── PDF Gate Modal ──────────────────────────────────────────────────────────
 function PdfGateModal({ onClose }: { onClose: () => void }) {
-  const [form, setForm] = useState({ brand: "", name: "", contact: "", brandSite: "", interest: "", direction: "" });
+  const [form, setForm] = useState({ brand: "", company: "", name: "", email: "", phone: "", brandSite: "", interest: "", hasTiktokShop: "", direction: "" });
   const [status, setStatus] = useState<"idle" | "loading">("idle");
 
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
@@ -314,12 +322,13 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
   const interests = [
     "틱톡샵 운영 대행",
     "크리에이터 시딩",
+    "틱톡샵 개설/초기 세팅",
     "기타",
   ];
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.interest) return;
+    if (!form.interest || !form.hasTiktokShop) return;
     setStatus("loading");
     try {
       await fetch("/api/pdf-lead", {
@@ -348,6 +357,16 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
 
         <form onSubmit={submit} className="space-y-4">
           <div>
+            <label className="text-xs font-bold text-gray-500 block mb-1">기업명 <span className="text-red-500">*</span></label>
+            <input
+              required
+              value={form.company}
+              onChange={(e) => set("company", e.target.value)}
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
+              placeholder="예) (주)마야크루"
+            />
+          </div>
+          <div>
             <label className="text-xs font-bold text-gray-500 block mb-1">브랜드명 <span className="text-red-500">*</span></label>
             <input
               required
@@ -368,13 +387,25 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
             />
           </div>
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">연락처 (이메일 또는 전화번호) <span className="text-red-500">*</span></label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">이메일 <span className="text-red-500">*</span></label>
             <input
               required
-              value={form.contact}
-              onChange={(e) => set("contact", e.target.value)}
+              type="email"
+              value={form.email}
+              onChange={(e) => set("email", e.target.value)}
               className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
-              placeholder="예) name@company.com 또는 010-1234-5678"
+              placeholder="예) name@company.com"
+            />
+          </div>
+          <div>
+            <label className="text-xs font-bold text-gray-500 block mb-1">핸드폰 <span className="text-red-500">*</span></label>
+            <input
+              required
+              type="tel"
+              value={form.phone}
+              onChange={(e) => set("phone", e.target.value)}
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
+              placeholder="예) 010-1234-5678"
             />
           </div>
           <div>
@@ -406,8 +437,20 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
             </div>
           </div>
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 (선택)</label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 <span className="text-red-500">*</span></label>
+            <div className="flex gap-2">
+              {["예", "아니오"].map((v) => (
+                <button key={v} type="button" onClick={() => set("hasTiktokShop", v)}
+                  className={`flex-1 py-2 rounded-xl text-sm font-bold border transition-colors ${form.hasTiktokShop === v ? "bg-black text-white border-black" : "border-gray-200 text-gray-500"}`}>
+                  {v}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div>
+            <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 <span className="text-red-500">*</span></label>
             <input
+              required
               value={form.direction}
               onChange={(e) => set("direction", e.target.value)}
               className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
@@ -416,7 +459,7 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
           </div>
           <button
             type="submit"
-            disabled={status === "loading" || !form.interest}
+            disabled={status === "loading" || !form.interest || !form.hasTiktokShop}
             className="w-full py-3.5 rounded-full text-black font-bold text-sm transition-opacity hover:opacity-80 disabled:opacity-50 mt-2"
             style={{ backgroundColor: ORANGE }}
           >
@@ -547,7 +590,7 @@ function FloatingCTA({ onOpenModal }: { onOpenModal: () => void }) {
           className="inline-flex items-center gap-2 px-7 py-4 text-black font-bold rounded-full text-sm shadow-2xl hover:opacity-80 transition-opacity"
           style={{ backgroundColor: ORANGE }}
         >
-          소개서 열람하기 →
+          상담 신청 →
         </button>
       </div>
     </>
@@ -1363,7 +1406,7 @@ export default function Home() {
       {modalOpen && <ContactModal onClose={() => setModalOpen(false)} />}
       {pdfGateOpen && <PdfGateModal onClose={() => setPdfGateOpen(false)} />}
       <ScrollDots />
-      <FloatingCTA onOpenModal={() => setPdfGateOpen(true)} />
+      <FloatingCTA onOpenModal={() => setModalOpen(true)} />
       <main>
         <Hero onOpenModal={() => setModalOpen(true)} />
         <BrandPartners />

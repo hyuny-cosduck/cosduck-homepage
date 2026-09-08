@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { brand, name, contact, brandSite, interest, direction } = await req.json();
+  const { brand, company, name, email, phone, brandSite, interest, hasTiktokShop, direction } = await req.json();
 
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) {
@@ -11,11 +11,14 @@ export async function POST(req: NextRequest) {
   const text = [
     `📄 *서비스 소개서 열람 요청*`,
     ``,
+    `• *기업명:* ${company}`,
     `• *브랜드명:* ${brand}`,
     `• *담당자:* ${name}`,
-    `• *연락처:* ${contact}`,
+    `• *이메일:* ${email}`,
+    `• *핸드폰:* ${phone}`,
     `• *브랜드 사이트:* ${brandSite || "미입력"}`,
     `• *관심 서비스:* ${interest}`,
+    `• *틱톡샵 개설 여부:* ${hasTiktokShop}`,
     `• *원하는 방향성:* ${direction}`,
   ].join("\n");
 
