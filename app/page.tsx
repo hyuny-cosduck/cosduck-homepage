@@ -1227,8 +1227,8 @@ function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
       <Badge>Pricing</Badge>
       <Title>투자 대비 예상 수익: 7개월 ROI 시뮬레이션</Title>
       <Sub>
-        고정 운영비 + 성과 연동형 수수료 구조를 적용합니다.
-        브랜드 상황에 맞는 맞춤 견적을 제공해 드립니다.
+        각 브랜드에 알맞는 방식으로 운영합니다.
+        아래 상담신청 버튼을 클릭하세요!
       </Sub>
 
       <div className="mb-8">
