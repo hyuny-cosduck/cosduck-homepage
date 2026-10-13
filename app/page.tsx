@@ -339,7 +339,7 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
     } catch {
       // still open the PDF even if Slack fails
     }
-    window.open("/cosduck-service-intro-full.pdf", "_blank");
+    window.open("/cosduck-service-intro-2026.pdf", "_blank");
     onClose();
   };
 
