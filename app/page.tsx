@@ -907,49 +907,6 @@ function WhyNow() {
   );
 }
 
-// ─── PROBLEM ─────────────────────────────────────────────────────────────────
-function Problem() {
-  const problems = [
-    {
-      num: "01",
-      title: "크리에이터 수급 장벽",
-      sub: "현지 크리에이터 발굴·관리 역량 부족",
-      desc: "양질의 콘텐츠 수급이 불안정해지고, 전체 샵 매출이 정체됩니다.",
-    },
-    {
-      num: "02",
-      title: "데이터 분석의 한계",
-      sub: "집중할 콘텐츠·크리에이터 발굴의 어려움",
-      desc: "어떤 콘텐츠가 전환되는지 알 수 없어, 광고비는 낭비되고 ROI는 떨어집니다.",
-    },
-    {
-      num: "03",
-      title: "운영 리소스 부족",
-      sub: "인비테이션 발송·FBT·CS·리뷰 관리 등 반복 업무에 전담 인력 소진",
-      desc: "핵심 성장 업무에 집중하지 못하고, 셀러 패널티와 평점 하락으로 이어집니다.",
-    },
-  ];
-
-  return (
-    <Section id="problem" bg="bg-white">
-      <Badge>Problem</Badge>
-      <Title>K‑뷰티 브랜드의 틱톡샵 진출, 왜 실패하는가</Title>
-      <Sub>틱톡샵은 K‑뷰티에게 최고의 기회입니다. 하지만 대부분의 브랜드가 첫 6개월 안에 성장 정체를 겪습니다.</Sub>
-
-      <div className="grid md:grid-cols-3 gap-5">
-        {problems.map((p) => (
-          <div key={p.num} className="rounded-2xl border border-gray-200 p-8 bg-white">
-            <div className="text-sm font-black mb-1 text-gray-300">{p.num}</div>
-            <h3 className="text-xl font-bold mb-3 text-black">{p.title}</h3>
-            <p className="text-gray-700 font-medium text-sm mb-4">{p.sub}</p>
-            <div className="bg-gray-50 rounded-xl p-4 text-sm text-gray-500">{p.desc}</div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
 // ─── SOLUTION ────────────────────────────────────────────────────────────────
 function Solution() {
   const solutions = [
@@ -979,7 +936,7 @@ function Solution() {
   return (
     <Section id="solution" bg="bg-gray-50">
       <Badge>Why Cosduck</Badge>
-      <Title>코스덕은 이 세 가지 장벽을 운영 구조로 해결합니다</Title>
+      <Title>코스덕은 K‑뷰티 브랜드의 틱톡샵 진출을 운영 구조로 해결합니다</Title>
       <Sub>글로벌 커뮤니케이션 AM, 내부 분석 도구(AX), 풀퍼널 운영 자동화를 기반으로 브랜드의 틱톡샵 성장을 설계합니다.</Sub>
 
       <div className="grid md:grid-cols-3 gap-5">
@@ -1135,11 +1092,10 @@ function Services() {
   return (
     <Section id="services" bg="bg-gray-50">
       <Badge>Services</Badge>
-      <Title>상품 세팅부터 고객 관리까지, TikTok Shop 운영 전 과정을 직접 수행합니다</Title>
-      <Sub>브랜드 상황에 맞는 두 가지 서비스 모델을 제공합니다.</Sub>
+      <Title>TikTok Shop에 처음 진입하면 마주하는 것들</Title>
+      <Sub>코스덕이 실제로 운영하고 있는 업무들입니다.</Sub>
 
-      <div className="grid md:grid-cols-2 gap-5 mb-8">
-        {/* Full-Funnel */}
+      <div className="max-w-2xl mx-auto mb-8">
         <div className="bg-white rounded-2xl p-8 border border-gray-200">
           <span
             className="inline-block px-4 py-2 rounded-full text-black text-sm font-bold mb-6"
@@ -1228,51 +1184,7 @@ function Services() {
           </div>
         </div>
 
-        {/* Affiliate Partnership */}
-        <div className="bg-white rounded-2xl p-8 border border-gray-200">
-          <span
-            className="inline-block px-4 py-2 rounded-full text-white text-sm font-bold mb-6"
-            style={{ backgroundColor: BLUE }}
-          >
-            Affiliate Partnership
-          </span>
-          <h3 className="text-2xl font-black text-black mb-3">어필리에이트 파트너십</h3>
-          <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-            크리에이터 어필리에이트 운영만 필요한 경우, 핵심 운영에 집중하는 파트너십입니다.
-          </p>
-          <div className="space-y-2.5">
-            {[
-              "크리에이터 확보 및 인비테이션",
-              "콘텐츠 발행 및 관리",
-              "판매 성과 분석",
-              "어필리에이트 성과 창출 집중",
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-2.5 text-sm">
-                <span className="mt-0.5" style={{ color: BLUE }}>✓</span>
-                <span className="text-gray-600">{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 pt-5 border-t border-gray-100">
-            <p className="text-xs font-bold text-black mb-2">이런 경우 추천합니다</p>
-            <ul className="space-y-1.5">
-              {[
-                "이미 틱톡샵 운영 인프라가 구축되어 있는 브랜드",
-                "크리에이터 어필리에이트에 집중하고 싶은 브랜드",
-                "성과 기반으로 콘텐츠를 빠르게 테스트하고 싶은 브랜드",
-              ].map((item) => (
-                <li key={item} className="text-xs text-gray-400 flex gap-1.5">
-                  <span>·</span> {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </div>
-
-      <p className="text-[10px] sm:text-xs text-gray-400 mt-4">
-        * 틱톡샵 운영 및 광고 대행의 계약기간은 6개월 단위로 진행되며, 샵 초기 세팅 기간 1개월은 별도로 소요됩니다.
-      </p>
     </Section>
   );
 }
@@ -1485,7 +1397,6 @@ export default function Home() {
         <BrandPartners />
         <Services />
         <WhyNow />
-        <Problem />
         <Solution />
         <CoreAdvantages />
         <CaseStudy />
