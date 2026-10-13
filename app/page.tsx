@@ -1148,24 +1148,81 @@ function Services() {
             Full-Funnel
           </span>
           <h3 className="text-2xl font-black text-black mb-2">틱톡샵 풀퍼널 대행</h3>
-          <p className="text-sm font-semibold mb-3" style={{ color: BLUE }}>코스덕이 제일 잘하는 분야입니다</p>
+          <p className="text-sm font-semibold mb-3" style={{ color: BLUE }}>초기세팅부터 실제 판매하고 스케일업까지 경험했습니다</p>
           <p className="text-gray-500 text-sm mb-6 leading-relaxed">
             샵 세팅부터 광고·시딩·CS까지, 틱톡샵 운영 전 과정을 코스덕이 직접 수행합니다.
           </p>
-          <div className="space-y-2.5">
-            {[
-              "TikTok Shop 운영 (리뷰·리스팅·FBT·CS)",
-              "어필리에이트 무가 시딩",
-              "콘텐츠 기획 및 크리에이터 관리",
-              "성과 분석 및 대시보드 제공",
-              "GMV MAX 캠페인",
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-2.5 text-sm">
-                <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>
-                <span className="text-gray-700">{item}</span>
+
+          {/* 데일리 업무 */}
+          <div className="mb-4">
+            <p className="text-xs font-black text-black mb-2">데일리 업무</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+              <div>
+                <p className="text-[10px] font-bold text-gray-400 mb-1">AF Center</p>
+                {["Sample Request", "콘텐츠 가이드 전송", "Creator Message 확인"].map((item) => (
+                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
+                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
+                  </div>
+                ))}
               </div>
-            ))}
+              <div>
+                <p className="text-[10px] font-bold text-gray-400 mb-1">Seller Center</p>
+                {["Shop Ads", "Creative Boost", "Customer Messages"].map((item) => (
+                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
+                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
+          {/* 위클리 / 먼슬리 업무 */}
+          <div className="mb-4">
+            <p className="text-xs font-black text-black mb-2">위클리 / 먼슬리 업무</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+              <div>
+                <p className="text-[10px] font-bold text-gray-400 mb-1">AF Center</p>
+                {["크리에이터 선별", "배치태깅", "인비테이션 발송"].map((item) => (
+                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
+                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-gray-400 mb-1">Seller Center</p>
+                {["Shop 전체 지표 트랙킹"].map((item) => (
+                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
+                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 프로모션 */}
+          <div className="mb-4">
+            <p className="text-xs font-black text-black mb-2">프로모션</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+              {["샵 페이지 (배너)", "프로모션 세팅", "쿠폰 발행", "월별 캠페인/마케팅 패키지 등록", "프로모션/마케팅 성과 확인"].map((item) => (
+                <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
+                  <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 기타 업무 */}
+          <div className="mb-2">
+            <p className="text-xs font-black text-black mb-2">기타 업무</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+              {["콘텐츠 소구 실험 (Creatives 트랙킹)", "Account Health & Violation Appeal", "샵 부정리뷰 관리", "IPPC 리셀러 단속"].map((item) => (
+                <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
+                  <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-6 pt-5 border-t border-gray-100">
             <p className="text-xs text-gray-400">틱톡샵을 처음 시작하거나, 운영 전체를 맡기고 싶은 브랜드에 추천합니다.</p>
           </div>
@@ -1307,46 +1364,6 @@ function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
   );
 }
 
-// ─── ROADMAP ─────────────────────────────────────────────────────────────────
-function Roadmap() {
-  const months = [
-    { title: "크리에이터 발굴 및 컨택", goal: "핵심 크리에이터 선별 & 확보" },
-    { title: "틱톡샵 오픈", goal: "샵 세팅 완료 & 캠페인 세팅" },
-    { title: "광고 캠페인 최적화", goal: "콘텐츠 수급 & 광고 캠페인 최적화" },
-    { title: "틱톡샵 활성화", goal: "히어로 스큐 선별 & 히어로 번들상품 구성" },
-    { title: "운영 자동화", goal: "자동화 루틴 설계, T3 달성 목표" },
-    { title: "스케일업", goal: "T3 유지, 복제 가능한 확장 모델 정착" },
-    { title: "빌드업", goal: "T4 목표 설정 및 브랜드 확장" },
-  ];
-
-  return (
-    <Section id="roadmap" bg="bg-gray-50">
-      <Badge>Roadmap</Badge>
-      <Title>7개월 TikTok Shop 성장 전략 로드맵</Title>
-      <Sub>틱톡샵 운영 및 어필리에이트 마케팅의 단계별 실행 플랜으로 구성되어 있습니다.</Sub>
-
-      <div className="space-y-2">
-        {months.map((m, i) => (
-          <div key={i} className="flex items-center gap-4 bg-white rounded-lg px-5 py-3.5 border border-gray-100">
-            <div
-              className="w-8 h-8 rounded-full text-white text-xs font-black flex items-center justify-center shrink-0"
-              style={{ backgroundColor: i < 3 ? BLUE : ORANGE }}
-            >
-              {i + 1}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-black text-sm">{m.title}</div>
-            </div>
-            <span className="text-xs font-semibold text-white bg-black px-2.5 py-1 rounded-full shrink-0">
-              {m.goal}
-            </span>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
 // ─── PARTNER FIT ─────────────────────────────────────────────────────────────
 function PartnerFit() {
   return (
@@ -1473,7 +1490,6 @@ export default function Home() {
         <CoreAdvantages />
         <CaseStudy />
         <Pricing onOpenPdfGate={() => setPdfGateOpen(true)} />
-        <Roadmap />
         <PartnerFit />
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
