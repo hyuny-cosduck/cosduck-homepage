@@ -1225,7 +1225,7 @@ function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
   return (
     <Section id="pricing" bg="bg-white">
       <Badge>Pricing</Badge>
-      <Title>투자 대비 예상 수익: 7개월 ROI 시뮬레이션</Title>
+      <Title>브랜드 맞춤 견적 제공</Title>
       <Sub>
         각 브랜드에 알맞는 방식으로 운영합니다.
         아래 상담신청 버튼을 클릭하세요!
@@ -1385,7 +1385,7 @@ function PartnerFit() {
           </p>
           <p className="text-white text-xs sm:text-sm leading-relaxed mb-6">
             북미 틱톡 문화에 대한 이해도와 운영 역량이 승패를 가릅니다.
-            코스덕은 장기적으로 함께 성장할 의지가 있는 브랜드 파트너사를 찾고 있습니다.
+            코스덕은 함께 성장하고 실험할 의지가 있는 브랜드 파트너사를 찾고 있습니다.
           </p>
         </div>
       </div>
