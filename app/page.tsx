@@ -513,9 +513,6 @@ function ExpoPopup() {
           priority
         />
         <div className="p-5 text-center">
-          <p className="text-sm font-bold text-gray-700 mb-3">
-            코스덕이 K-Beauty Expo Korea 2026에 참가합니다!
-          </p>
           <a
             href="/cosduck-service-intro-2026.pdf"
             target="_blank"
