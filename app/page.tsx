@@ -477,11 +477,11 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
 
 // ─── K-Beauty Expo Popup ────────────────────────────────────────────────────
 function ExpoPopup() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem("expo-popup-dismissed");
-    if (dismissed) setOpen(false);
+    if (!dismissed) setOpen(true);
   }, []);
 
   const close = () => {
