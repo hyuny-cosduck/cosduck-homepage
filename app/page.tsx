@@ -110,16 +110,6 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
         </div>
       )}
       </div>
-      {/* PDF banner below header */}
-      <a
-        href="/cosduck-service-intro-2026.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full text-center py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
-        style={{ backgroundColor: BLUE }}
-      >
-        📄 K-Beauty Expo — Cosduck 서비스 소개서 보기 →
-      </a>
     </nav>
   );
 }
@@ -475,58 +465,6 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ─── K-Beauty Expo Popup ────────────────────────────────────────────────────
-function ExpoPopup() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem("expo-popup-dismissed");
-    if (!dismissed) setOpen(true);
-  }, []);
-
-  const close = () => {
-    setOpen(false);
-    sessionStorage.setItem("expo-popup-dismissed", "1");
-  };
-
-  if (!open) return null;
-
-  return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={close}>
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-      <div
-        className="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-w-sm w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={close}
-          className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center text-sm hover:bg-black/70 transition-colors"
-        >
-          ✕
-        </button>
-        <Image
-          src="/kbeauty-expo-2026-poster.png"
-          alt="K-Beauty Expo Korea 2026 - Oct 15-17, KINTEX I Hall 3-5"
-          width={400}
-          height={600}
-          className="w-full h-auto"
-          priority
-        />
-        <div className="p-5 text-center">
-          <a
-            href="/cosduck-service-intro-2026.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-black font-bold text-sm transition-opacity hover:opacity-80"
-            style={{ backgroundColor: ORANGE }}
-          >
-            📄 서비스 소개서 보기 →
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ─── Scroll Dots ─────────────────────────────────────────────────────────────
 const SCROLL_SECTIONS = [
@@ -1387,7 +1325,6 @@ export default function Home() {
   return (
     <>
       <Nav onOpenPdfGate={() => setPdfGateOpen(true)} onOpenModal={() => setModalOpen(true)} />
-      <ExpoPopup />
       {modalOpen && <ContactModal onClose={() => setModalOpen(false)} />}
       {pdfGateOpen && <PdfGateModal onClose={() => setPdfGateOpen(false)} />}
       <ScrollDots />
