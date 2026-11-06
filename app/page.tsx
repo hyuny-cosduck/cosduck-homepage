@@ -20,9 +20,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
 
   const links = [
     { href: "#pdf-gate", label: "서비스 소개서" },
-    { href: "#solution", label: "Why Cosduck" },
-    { href: "#case-study", label: "케이스 스터디" },
-    { href: "#pricing", label: "비용" },
+    { href: "#services", label: "서비스" },
   ];
 
   return (
@@ -159,7 +157,7 @@ function Section({ id, bg = "bg-white", children }: { id?: string; bg?: string; 
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-black text-white mb-5">
+    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-black text-white mb-5" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
       {children}
     </span>
   );
@@ -167,7 +165,7 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 function Title({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
-    <h2 className={`text-2xl md:text-3xl font-black tracking-tight leading-tight ${light ? "text-white" : "text-black"}`}>
+    <h2 className={`text-2xl md:text-3xl font-black tracking-tight leading-tight ${light ? "text-white" : "text-black"}`} style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
       {children}
     </h2>
   );
@@ -470,8 +468,6 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
 const SCROLL_SECTIONS = [
   { id: "hero",         label: "홈" },
   { id: "services",     label: "서비스" },
-  { id: "case-study",   label: "케이스 스터디" },
-  { id: "pricing",      label: "비용" },
   { id: "contact",      label: "문의" },
 ];
 
@@ -579,9 +575,9 @@ function FloatingCTA({ onOpenModal }: { onOpenModal: () => void }) {
         <button
           onClick={onOpenModal}
           className="inline-flex items-center gap-2 px-7 py-4 text-black font-bold rounded-full text-sm shadow-2xl hover:opacity-80 transition-opacity"
-          style={{ backgroundColor: ORANGE }}
+          style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
         >
-          상담 신청 →
+          솔루션 신청 →
         </button>
       </div>
     </>
@@ -607,32 +603,29 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs font-bold mb-8"
           style={{ backgroundColor: BLUE }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-white" />
-          TikTok Shop Agency
+          TikTok Shop AI Partner
         </span>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-5 text-black">
-          K‑뷰티 브랜드의 <span style={{ color: ORANGE }}>글로벌 틱톡샵</span> 성장 파트너
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-5 text-black" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+          <span style={{ color: ORANGE }}>TikTok Shop</span> 자동화 파트너
         </h1>
 
-        <p className="text-base text-gray-500 max-w-lg mb-8 leading-relaxed">
-          데이터 기반 운영 · 자체 분석 솔루션 · 크리에이터 네트워크
-          <br />
-          성과로 증명되는 성장 파트너, Cosduck.
+        <p className="text-sm text-gray-500 max-w-2xl mb-8 leading-relaxed">
+          틱톡샵 인비테이션 자동 발송 | 틱톡샵 샘플 자동 수락 | 틱톡샵 콘텐츠용 가이드라인 자동 전달 | 틱톡샵 Customer Message 자동 CS처리 | 틱톡샵 제품리뷰 체험단 | 틱톡샵 크리에이터풀 US 365k+ &amp; ID 474k+ | 틱톡샵 Shop Ads 예산 자동 조절
         </p>
 
         <div className="flex flex-row gap-3">
           <button
             onClick={onOpenModal}
             className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-            style={{ backgroundColor: ORANGE }}
+            style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
           >
-            상담 신청 →
+            솔루션 신청 →
           </button>
           <a
-            href="#case-study"
+            href="#services"
             className="inline-flex items-center justify-center px-7 py-3.5 text-white font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-            style={{ backgroundColor: BLUE }}
+            style={{ backgroundColor: BLUE, fontFamily: "'Unbounded', sans-serif" }}
           >
             성과 보기
           </a>
@@ -647,7 +640,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             { value: 4,     suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: "",  color: ORANGE },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-2xl md:text-3xl font-black" style={{ color: s.color }}>
+              <div className="text-2xl md:text-3xl font-black" style={{ color: s.color, fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                 {s.prefix}<Counter value={s.value} suffix={s.suffix} />
               </div>
               <div className="text-sm text-gray-400 mt-1">{s.label}</div>
@@ -660,37 +653,14 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
 }
 
 // ─── BRAND PARTNERS ──────────────────────────────────────────────────────────
-function useTickerKeyframes() {
-  useEffect(() => {
-    const id = "ticker-keyframes";
-    if (document.getElementById(id)) return;
-    const style = document.createElement("style");
-    style.id = id;
-    style.textContent = `
-      @keyframes tickerLeft {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-25%); }
-      }
-      @keyframes tickerRight {
-        0% { transform: translateX(-25%); }
-        100% { transform: translateX(0); }
-      }
-    `;
-    document.head.appendChild(style);
-  }, []);
-}
-
 function TickerRow({ items, duration, reverse, height }: { items: { name: string; logo: string; className?: string }[]; duration: number; reverse?: boolean; height: string }) {
   const renderGroup = (keyPrefix: string) => (
     <div className="flex items-center gap-8 sm:gap-14 pr-8 sm:pr-14 shrink-0">
       {items.map((b) => (
-        <Image
+        <img
           key={`${keyPrefix}-${b.name}`}
           src={b.logo}
           alt={b.name}
-          width={200}
-          height={60}
-          loading="eager"
           className={`${b.className || "h-5 sm:h-7"} w-auto shrink-0 opacity-70`}
         />
       ))}
@@ -714,7 +684,6 @@ function TickerRow({ items, duration, reverse, height }: { items: { name: string
 }
 
 function BrandPartners() {
-  useTickerKeyframes();
   const partners = [
     { name: "Laka", logo: "/brands/laka.png", className: "h-4 sm:h-6" },
     { name: "Colorgram", logo: "/brands/colorgram.png", className: "h-5 sm:h-7 translate-y-0.5" },
@@ -785,480 +754,178 @@ function BrandPartners() {
   );
 }
 
-// ─── WHY NOW ─────────────────────────────────────────────────────────────────
-function WhyNow() {
-  const cards = [
-    {
-      num: "01",
-      title: "폭발적으로 성장하는 채널",
-      facts: ["2025 글로벌 GMV $64B+", "2024 $33B → 약 2배 (+94%)", "2026 전망 $112B · 16국 확장"],
-      tagline: "매년 2배씩 크는 채널, 지금이 진입 적기",
-    },
-    {
-      num: "02",
-      title: "활짝 열린 시장",
-      facts: ["미국 $15.1B (+68% YoY)", "인도네시아 $13.1B · 글로벌 2위", "동남아 전체 $45.6B · 전년 대비 2배"],
-      tagline: "코스덕이 직접 운영·검증한 시장",
-    },
-    {
-      num: "03",
-      title: "세계 2위로 올라선 K‑뷰티",
-      facts: ["한국 화장품 수출 $11.4B", "세계 2위 수출국 · 최대시장 미국 $2.2B", "뷰티 = 틱톡샵 1위 카테고리"],
-      tagline: "세계가 인정한 K‑뷰티, 지금이 기회",
-    },
-  ];
-
-  return (
-    <Section id="why-now" bg="bg-gray-50">
-      <Badge>Why Now</Badge>
-      <Title>지금이 K‑뷰티 × 틱톡샵의 골든타임입니다</Title>
-      <Sub>폭발하는 채널, 열려 있는 핵심 시장, 세계 2위로 올라선 K‑뷰티. 세 흐름이 지금 겹칩니다.</Sub>
-
-      <div className="grid md:grid-cols-3 gap-5">
-        {cards.map((c) => (
-          <div key={c.num} className="bg-white rounded-2xl p-8 border border-gray-100">
-            <div className="text-sm font-black mb-1" style={{ color: BLUE }}>{c.num}</div>
-            <h3 className="text-xl font-bold mb-5 text-black">{c.title}</h3>
-            <ul className="space-y-2 mb-6">
-              {c.facts.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-gray-600 text-sm">
-                  <span className="mt-0.5 font-bold" style={{ color: BLUE }}>·</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <div className="pt-5 border-t border-gray-100 text-sm font-semibold" style={{ color: BLUE }}>
-              {c.tagline}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div
-        className="mt-6 rounded-2xl px-8 py-5 text-center font-semibold text-base text-white"
-        style={{ backgroundColor: BLUE }}
-      >
-        성장하는 채널 × 열려 있는 시장 × 세계 2위 K‑뷰티.{" "}
-        <span className="underline decoration-white/40">먼저 올라탄 브랜드가 선점합니다.</span>
-      </div>
-    </Section>
-  );
-}
-
-// ─── SOLUTION ────────────────────────────────────────────────────────────────
-function Solution() {
-  const solutions = [
-    {
-      num: "01",
-      title: "글로벌 크리에이터 운영 역량",
-      desc: "전 팀원 영어 능통 및 해외 거주 경험 보유. 현지 크리에이터 직접 소통·소싱·관리",
-      highlight: "충성 크리에이터를 확보해 고품질 콘텐츠를 안정적으로 수급합니다.",
-      tag: "Discord 기반 실시간 관리 · 100% 글로벌 역량 팀",
-    },
-    {
-      num: "02",
-      title: "공식을 찾는 콘텐츠 실험",
-      desc: "꾸준한 가설·검증 기반의 콘텐츠 실험 운영, 브랜드별 성공 공식 발굴",
-      highlight: "우리 브랜드만의 성공 공식을 찾아냅니다.",
-      tag: "Creative Boost로 실험 부스팅, 성공 공식 발굴",
-    },
-    {
-      num: "03",
-      title: "풀퍼널 운영 대행 및 자동화 (AX-Ops)",
-      desc: "반복 업무는 자동화로 처리, 더 중요한 일에 인력을 집중",
-      highlight: "운영은 시스템이, 사람은 성장에 집중합니다.",
-      tag: "브랜딩 전담 AM 1:1 배정 + 운영 자동화 엔진",
-    },
-  ];
-
-  return (
-    <Section id="solution" bg="bg-gray-50">
-      <Badge>Why Cosduck</Badge>
-      <Title>코스덕은 K‑뷰티 브랜드의 틱톡샵 진출을 운영 구조로 해결합니다</Title>
-      <Sub>글로벌 커뮤니케이션 AM, 내부 분석 도구(AX), 풀퍼널 운영 자동화를 기반으로 브랜드의 틱톡샵 성장을 설계합니다.</Sub>
-
-      <div className="grid md:grid-cols-3 gap-5">
-        {solutions.map((s) => (
-          <div key={s.num} className="bg-white rounded-2xl border border-gray-100 p-8">
-            <div className="text-sm font-black mb-1" style={{ color: BLUE }}>{s.num}</div>
-            <h3 className="text-xl font-bold mb-3 text-black">{s.title}</h3>
-            <p className="text-gray-500 text-sm mb-4">{s.desc}</p>
-            <div
-              className="rounded-xl p-4 text-sm font-medium text-black mb-3"
-              style={{ backgroundColor: `${BLUE}12` }}
-            >
-              {s.highlight}
-            </div>
-            <p className="text-xs text-gray-400">[{s.tag}]</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-// ─── CORE ADVANTAGES ─────────────────────────────────────────────────────────
-function CoreAdvantages() {
-  return (
-    <Section id="advantages" bg="bg-white">
-      <Badge>Core Advantage</Badge>
-      <Title>차별화된 자산과 실행력으로 틱톡샵을 성장시킵니다</Title>
-      <Sub>코스덕은 수작업 대신 자체 개발한 운영 툴과 자동화 시스템으로 크리에이터, 콘텐츠, 커뮤니티 운영을 통합 관리합니다.</Sub>
-
-      <div className="grid grid-cols-2 gap-5">
-        {[
-          {
-            icon: "📊",
-            title: "광고 선별 · 효율 고도화",
-            desc: "브랜드에 맞는 콘텐츠를 선별하고, 데이터로 검증하며 집행 효율을 높입니다.",
-          },
-          {
-            icon: "🎯",
-            title: "제품 협찬 대시보드",
-            desc: "크리에이터가 원하는 캠페인에 쉽게 참여할 수 있는 코스덕 솔루션을 운영합니다.",
-          },
-          {
-            icon: "⚡",
-            title: "AX 자동화 시스템",
-            desc: "틱톡샵의 반복 업무를 AX 시스템으로 처리합니다. 인력을 성장에 집중시킵니다.",
-          },
-          {
-            icon: "📈",
-            title: "통합 분석 대시보드",
-            desc: "주요 지표를 한 화면에 통합, 집중할 곳과 막힌 곳을 동시에 파악합니다.",
-          },
-        ].map((a) => (
-          <div key={a.title} className="bg-white rounded-2xl p-5 sm:p-8 border border-gray-200">
-            <div
-              className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center text-base sm:text-2xl mb-3 sm:mb-5"
-              style={{ backgroundColor: `${BLUE}15` }}
-            >
-              {a.icon}
-            </div>
-            <h3 className="text-xs sm:text-lg font-bold mb-1.5 sm:mb-3 text-black">{a.title}</h3>
-            <p className="text-gray-500 text-[11px] sm:text-sm leading-relaxed">{a.desc}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
 
 // ─── CASE STUDY ─────────────────────────────────────────────────────────────
-function CaseStudy() {
+// ─── SERVICES (통합: 타임라인 + Before→After) ─────────────────────────────────
+function Services() {
   const brands = [
     {
       label: "BRAND A · US",
-      title: "런칭 4개월 만에 샵티어 T5 달성",
-      metrics: [
-        { val: "$600K", unit: "월 매출 (BFCM)" },
-        { val: "T5", unit: "틱톡샵 셀러 등급" },
-        { val: "4개월", unit: "달성 기간" },
+      steps: [
+        { time: "출시", week: 0, text: "TikTok Shop 런칭" },
+        { time: "2주", week: 2, text: "샘플 주 500건 발송" },
+        { time: "1개월", week: 4, text: "어필리에이트 콘텐츠 광고 부스팅" },
+        { time: "3개월", week: 12, text: "샵티어 T4 달성" },
+        { time: "4개월", week: 16, text: "샵티어 T5 달성", highlight: true },
       ],
-      note: "동일 카테고리 경쟁 브랜드 평균 대비 3배 빠른 성장 속도",
     },
     {
       label: "BRAND B · US",
-      title: "런칭 6주 만에 샵티어 T4 달성",
-      metrics: [
-        { val: "$294.9K", unit: "누적 매출" },
-        { val: "T4", unit: "틱톡샵 셀러 등급" },
-        { val: "29,619개", unit: "누적 판매" },
+      steps: [
+        { time: "출시", week: 0, text: "TikTok Shop 런칭" },
+        { time: "2주", week: 2, text: "틱톡샵 체험단 100건 진행" },
+        { time: "4주", week: 4, text: "인비테이션 주 7,000건 발송" },
+        { time: "5주", week: 5, text: "샘플 주 500건 발송" },
+        { time: "6주", week: 6, text: "샵티어 T4 달성", highlight: true },
       ],
-      note: "신규 런칭 6주 만에 29,619개 판매 / 23,958건 주문 / 23,400명 고객",
     },
     {
       label: "BRAND C · US",
-      title: "미국 진출 6개월차, 단 2일 만에 샘플 리퀘스트 1,200건 돌파",
-      metrics: [
-        { val: "6,400건+", unit: "누적 샘플 신청수" },
-        { val: "19,300명", unit: "월 크리에이터 컨택" },
-        { val: "1,800건+", unit: "2주간 샘플 발송" },
+      steps: [
+        { time: "출시", week: 0, text: "TikTok Shop 런칭" },
+        { time: "2주", week: 2, text: "틱톡샵 체험단 60건 진행" },
+        { time: "4주", week: 4, text: "인비테이션 주 7,000건 발송" },
+        { time: "3개월", week: 12, text: "샘플 주 200건 + 체험단 50건 진행" },
+        { time: "4개월", week: 16, text: "인비테이션 주 2만건 발송" },
+        { time: "6개월", week: 24, text: "샘플 주 1,000건 인입", highlight: true },
       ],
-      note: "타깃 크리에이터 대상 대규모 인비테이션을 통해 단기간에 샘플 신청을 확보하고, 크리에이터 풀을 빠르게 확장",
     },
     {
       label: "BRAND D · 인도네시아",
-      title: "시장 진입 7개월 만에 일 매출 2,000만원 돌파",
-      metrics: [
-        { val: "2,000만원", unit: "일 최고 매출" },
-        { val: "421건", unit: "일 최고 판매" },
-        { val: "7개월", unit: "달성 기간" },
+      steps: [
+        { time: "출시", week: 0, text: "TikTok Shop 런칭" },
+        { time: "초기", week: 2, text: "인비테이션 주 2만건 발송" },
+        { time: "7개월", week: 28, text: "일 매출 2,000만원 돌파", highlight: true },
       ],
-      note: "2025.11 ~ 2026.05 GMV·판매량 지속 우상향 추세 확인",
     },
   ];
+  const maxWeek = 28;
 
-  return (
-    <Section id="case-study" bg="bg-gray-50">
-      <Badge>Case Studies</Badge>
-      <Title>코스덕이 직접 만들어 온 성과입니다</Title>
-      <Sub>북미·인도네시아에서 브랜드와 함께한 코스덕의 경험을 소개합니다.</Sub>
-
-      <div className="grid md:grid-cols-2 gap-5">
-        {brands.map((b) => (
-          <div key={b.label + b.title} className="rounded-2xl border border-gray-200 p-5 sm:p-8 bg-white">
-            <span
-              className="inline-block px-2.5 sm:px-3 py-1 rounded-full text-black text-[10px] sm:text-xs font-bold mb-3 sm:mb-6"
-              style={{ backgroundColor: ORANGE }}
-            >
-              {b.label}
-            </span>
-            <h3 className="text-base sm:text-xl font-black text-black mb-3 sm:mb-6 leading-snug">{b.title}</h3>
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-3 sm:mb-6 text-center">
-              {b.metrics.map((m) => (
-                <div key={m.unit}>
-                  <div className="text-lg sm:text-2xl font-black" style={{ color: ORANGE }}>{m.val}</div>
-                  <div className="text-[10px] sm:text-xs text-gray-400 mt-1">{m.unit}</div>
-                </div>
-              ))}
-            </div>
-            <p className="text-[10px] sm:text-xs text-gray-400 border-t border-gray-100 pt-3 sm:pt-4">{b.note}</p>
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-6 text-center text-xs text-gray-400">
-        * 실제 운영 데이터 기준이며, 샵·상품에 따라 결과는 달라질 수 있습니다.
-      </p>
-    </Section>
-  );
-}
-
-// ─── SERVICES ────────────────────────────────────────────────────────────────
-function Services() {
   return (
     <Section id="services" bg="bg-gray-50">
       <Badge>Services</Badge>
-      <Title>TikTok Shop에 처음 진입하면 마주하는 것들</Title>
-      <Sub>코스덕이 실제로 운영하고 있는 업무들입니다.</Sub>
+      <Title>직접 해봤기에, 자동화할 수 있습니다</Title>
+      <Sub>틱톡샵 운영 전 과정을 수동으로 대행해 본 경험이, 지금의 자동화 솔루션을 만들었습니다.</Sub>
 
-      <div className="max-w-2xl mx-auto mb-8">
+      {/* Before → After */}
+      <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+        {/* Before */}
         <div className="bg-white rounded-2xl p-8 border border-gray-200">
+          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-400 border border-gray-200 mb-5">
+            Before
+          </span>
+          <h3 className="text-lg font-black text-gray-400 mb-1">수동 초기세팅 대행</h3>
+          <p className="text-gray-400 text-xs mb-5">직접 운영하며 쌓은 노하우</p>
+          <div className="space-y-2">
+            {[
+              "Business Center ↔ Seller Center ↔ Ads Center 연동",
+              "카테고리 인증",
+              "상품 리스팅",
+              "FBT Inbound Order",
+              "Shop Ads 세팅",
+              "TikTok Chatbot 세팅",
+              "상시할인가 세팅",
+              "IPPC 서류 등록",
+              "초기 리뷰 부스팅",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-1.5 text-xs text-gray-400 line-through">
+                <span className="mt-0.5 no-underline">✓</span>{item}
+              </div>
+            ))}
+          </div>
+          <div className="mt-5 pt-4 border-t border-gray-100">
+            <p className="text-[10px] text-gray-400">이 경험이 있기에</p>
+          </div>
+        </div>
+
+        {/* After */}
+        <div className="rounded-2xl p-8 border-2" style={{ borderColor: ORANGE, backgroundColor: `${ORANGE}08` }}>
           <span
-            className="inline-block px-4 py-2 rounded-full text-black text-sm font-bold mb-6"
+            className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white mb-5"
             style={{ backgroundColor: ORANGE }}
           >
-            Full-Funnel
+            Now
           </span>
-          <h3 className="text-2xl font-black text-black mb-2">틱톡샵 풀퍼널 대행</h3>
-          <p className="text-sm font-semibold mb-3" style={{ color: BLUE }}>초기세팅부터 실제 판매하고 스케일업까지 경험했습니다</p>
-          <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-            샵 세팅부터 광고·시딩·CS까지, 틱톡샵 운영 전 과정을 코스덕이 직접 수행합니다.
-          </p>
-
-          {/* 데일리 업무 */}
-          <div className="mb-4">
-            <p className="text-xs font-black text-black mb-2">데일리 업무</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-              <div>
-                <p className="text-[10px] font-bold text-gray-400 mb-1">AF Center</p>
-                {["Sample Request", "콘텐츠 가이드 전송", "Creator Message 확인"].map((item) => (
-                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
-                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
-                  </div>
-                ))}
+          <h3 className="text-lg font-black text-black mb-1">AI 자동화 솔루션</h3>
+          <p className="text-gray-600 text-xs mb-5">반복 업무를 자동으로 처리합니다</p>
+          <div className="space-y-2">
+            {[
+              "인비테이션 자동 발송",
+              "샘플 자동 수락",
+              "콘텐츠용 가이드라인 자동 전달",
+              "Customer Message 자동 CS처리",
+              "제품리뷰 체험단",
+              "크리에이터풀 US 365k+ & ID 474k+",
+              "Shop Ads 예산 자동 조절",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-1.5 text-xs font-medium text-black">
+                <span className="mt-0.5" style={{ color: ORANGE }}>✦</span>{item}
               </div>
-              <div>
-                <p className="text-[10px] font-bold text-gray-400 mb-1">Seller Center</p>
-                {["Shop Ads", "Creative Boost", "Customer Messages"].map((item) => (
-                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
-                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* 위클리 / 먼슬리 업무 */}
-          <div className="mb-4">
-            <p className="text-xs font-black text-black mb-2">위클리 / 먼슬리 업무</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-              <div>
-                <p className="text-[10px] font-bold text-gray-400 mb-1">AF Center</p>
-                {["크리에이터 선별", "배치태깅", "인비테이션 발송"].map((item) => (
-                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
-                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <p className="text-[10px] font-bold text-gray-400 mb-1">Seller Center</p>
-                {["Shop 전체 지표 트랙킹"].map((item) => (
-                  <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
-                    <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 프로모션 */}
-          <div className="mb-4">
-            <p className="text-xs font-black text-black mb-2">프로모션</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-              {["샵 페이지 (배너)", "프로모션 세팅", "쿠폰 발행", "월별 캠페인/마케팅 패키지 등록", "프로모션/마케팅 성과 확인"].map((item) => (
-                <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
-                  <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 기타 업무 */}
-          <div className="mb-2">
-            <p className="text-xs font-black text-black mb-2">기타 업무</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-              {["콘텐츠 소구 실험 (Creatives 트랙킹)", "Account Health & Violation Appeal", "샵 부정리뷰 관리", "IPPC 리셀러 단속"].map((item) => (
-                <div key={item} className="flex items-start gap-1.5 text-xs text-gray-600">
-                  <span className="mt-0.5" style={{ color: ORANGE }}>✓</span>{item}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-6 pt-5 border-t border-gray-100">
-            <p className="text-xs text-gray-400">틱톡샵을 처음 시작하거나, 운영 전체를 맡기고 싶은 브랜드에 추천합니다.</p>
-          </div>
-        </div>
-
-      </div>
-    </Section>
-  );
-}
-
-// ─── PRICING ─────────────────────────────────────────────────────────────────
-function Pricing({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
-  return (
-    <Section id="pricing" bg="bg-white">
-      <Badge>Pricing</Badge>
-      <Title>브랜드 맞춤 견적 제공</Title>
-      <Sub>
-        각 브랜드에 알맞는 방식으로 운영합니다.
-        아래 상담신청 버튼을 클릭하세요!
-      </Sub>
-
-      <div className="mb-8">
-        <div className="bg-black text-white rounded-2xl p-8 text-center">
-          <span
-            className="inline-block px-4 py-2 rounded-full text-white text-sm font-bold mb-6"
-            style={{ backgroundColor: BLUE }}
-          >
-            파트너십 비용 구조
-          </span>
-          <div className="text-center py-4">
-            <div className="text-base text-white/70 mb-3">고정 운영비 + 성과 연동형 수수료</div>
-            <div className="text-xl font-black text-white mb-4">
-              브랜드 맞춤 견적을 제공합니다
-            </div>
-            <button
-              onClick={onOpenPdfGate}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-black font-bold text-sm transition-opacity hover:opacity-80"
-              style={{ backgroundColor: ORANGE }}
-            >
-              소개서 열람하기 →
-            </button>
+          <div className="mt-5 pt-4 border-t" style={{ borderColor: `${ORANGE}30` }}>
+            <p className="text-[10px] font-bold" style={{ color: ORANGE }}>자동화가 가능합니다</p>
           </div>
         </div>
       </div>
 
-      {/* Package inclusion banner */}
-      <div
-        className="mb-8 rounded-2xl border p-6"
-        style={{ borderColor: `${ORANGE}60`, backgroundColor: `${ORANGE}08` }}
-      >
-        <p className="text-sm font-black text-black mb-4">
-          🎁 파트너 계약 시 아래 서비스가 패키지에 포함됩니다. <span style={{ color: ORANGE }}>제품비만 부담하세요.</span>
+      {/* 타임라인 — 하나의 카드에 4개 브랜드 */}
+      <div className="mt-8 rounded-2xl border border-gray-200 p-5 sm:p-8 bg-white max-w-4xl mx-auto">
+        <h3 className="text-sm font-black text-black mb-6">수동 대행으로 만든 성과</h3>
+        <div className="space-y-8">
+          {brands.map((b) => {
+            const lastWeek = b.steps[b.steps.length - 1].week;
+            const endPct = Math.max(Math.min((lastWeek / maxWeek) * 100, 88), 60);
+            const positions = b.steps.map((_s, i) => {
+              if (i === 0) return 0;
+              if (i === b.steps.length - 1) return endPct;
+              return (i / (b.steps.length - 1)) * endPct;
+            });
+            return (
+              <div key={b.label}>
+                <span
+                  className="inline-block px-2.5 py-0.5 rounded-full text-black text-[10px] font-bold mb-3"
+                  style={{ backgroundColor: ORANGE }}
+                >
+                  {b.label}
+                </span>
+                <div className="relative">
+                  <div className="absolute top-[5px] left-0 h-0.5" style={{ backgroundColor: ORANGE, width: `${endPct}%` }} />
+                  <div className="flex relative">
+                    {b.steps.map((s, i) => (
+                      <div
+                        key={i}
+                        className="flex flex-col items-center text-center absolute"
+                        style={{ left: `${positions[i]}%`, transform: i === 0 ? "none" : "translateX(-50%)" }}
+                      >
+                        <div
+                          className={`rounded-full shrink-0 relative z-10 ${s.highlight ? "w-3 h-3" : "w-2.5 h-2.5"}`}
+                          style={{ backgroundColor: s.highlight ? ORANGE : "#ccc", border: s.highlight ? `2px solid ${ORANGE}40` : "none" }}
+                        />
+                        <span className="text-[9px] font-bold mt-1.5 block whitespace-nowrap" style={{ color: s.highlight ? ORANGE : "#999" }}>
+                          {s.time}
+                        </span>
+                        <p className={`text-[9px] leading-tight mt-0.5 whitespace-nowrap ${s.highlight ? "font-black text-black" : "text-gray-500"}`}>
+                          {s.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  {/* spacer */}
+                  <div className="h-14" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-center text-[10px] text-gray-400 mt-6 pt-4 border-t border-gray-100">
+          * 실제 운영 데이터 기준이며, 샵·상품에 따라 결과는 달라질 수 있습니다.
         </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {[
-            {
-              label: "AX 봇 운영 서비스",
-              normal: "₩2,565,900/월",
-              included: "패키지 포함",
-              desc: "틱톡샵 반복 운영 업무 자동화 봇",
-            },
-            {
-              label: "시딩 영상 제작",
-              normal: "₩20,000/건",
-              included: "패키지 포함",
-              desc: "크리에이터 무가 시딩 영상 한 편당 20,000원 상당",
-            },
-          ].map((b) => (
-            <div key={b.label} className="bg-white rounded-xl p-3 sm:p-5 border border-gray-100 flex gap-3 sm:gap-4 items-start">
-              <div
-                className="mt-0.5 w-6 h-6 sm:w-8 sm:h-8 rounded-md sm:rounded-lg flex items-center justify-center text-xs sm:text-sm shrink-0 font-black text-black"
-                style={{ backgroundColor: ORANGE }}
-              >
-                ✓
-              </div>
-              <div>
-                <div className="font-black text-black text-[11px] sm:text-sm mb-0.5 sm:mb-1">{b.label}</div>
-                <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
-                  <span className="text-[10px] sm:text-xs text-gray-400 line-through">{b.normal}</span>
-                  <span
-                    className="text-[10px] sm:text-xs font-bold text-white px-1.5 sm:px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: BLUE }}
-                  >
-                    {b.included}
-                  </span>
-                </div>
-                <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed">{b.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-    </Section>
-  );
-}
-
-// ─── PARTNER FIT ─────────────────────────────────────────────────────────────
-function PartnerFit() {
-  return (
-    <Section id="partner-fit" bg="bg-gray-700">
-      <div>
-        <Badge>Who We Work With</Badge>
-        <Title light>
-          솔직하게 말씀드립니다.
-          <br />
-          지금 틱톡샵은 포화 시장입니다.
-        </Title>
-        <p className="mt-4 mb-10 text-white text-sm sm:text-lg leading-relaxed max-w-2xl">
-          T4 브랜드조차 ROAS 1이 나올 만큼, 진입 장벽이 높아졌습니다.
-        </p>
-
-        <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-10">
-          {[
-            { icon: "📉", title: "광고 효율 저조", desc: "초기엔 ROAS보다 데이터 축적이 우선입니다." },
-            { icon: "⏳", title: "장기 관점 필수", desc: "최소 6개월 이상 투자할 준비가 필요합니다." },
-            { icon: "💸", title: "버틸 체력이 관건", desc: "빠르게 흐름을 타기 전까지 견딜 여력이 있어야 합니다." },
-          ].map((c) => (
-            <div key={c.title} className="rounded-xl sm:rounded-2xl border border-white/10 p-3 sm:p-6 bg-white/5">
-              <div className="text-lg sm:text-2xl mb-1.5 sm:mb-3">{c.icon}</div>
-              <h3 className="font-bold text-white text-[11px] sm:text-sm mb-1 sm:mb-2">{c.title}</h3>
-              <p className="text-white/80 text-[10px] sm:text-sm leading-relaxed">{c.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div
-          className="rounded-2xl p-8 border"
-          style={{ borderColor: `${ORANGE}50`, backgroundColor: `${ORANGE}10` }}
-        >
-          <p className="text-white font-bold text-sm sm:text-lg mb-2">
-            그럼에도 불구하고, 틱톡샵은 북미 시장 공략에서 절대 놓쳐선 안 될 채널입니다.
-          </p>
-          <p className="text-white text-xs sm:text-sm leading-relaxed mb-6">
-            북미 틱톡 문화에 대한 이해도와 운영 역량이 승패를 가릅니다.
-            코스덕은 함께 성장하고 실험할 의지가 있는 브랜드 파트너사를 찾고 있습니다.
-          </p>
-        </div>
       </div>
     </Section>
   );
 }
+
 
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 function Contact({ onOpenModal }: { onOpenModal: () => void }) {
@@ -1267,8 +934,6 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
       <div className="max-w-2xl mx-auto text-center">
         <Badge>Next Step</Badge>
         <Title>
-          브랜드 맞춤 시뮬레이션을
-          <br />
           지금 바로 받아보세요
         </Title>
         <Sub>담당자: 임 현 | hyuny@cosduck.com</Sub>
@@ -1276,9 +941,9 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
         <button
           onClick={onOpenModal}
           className="inline-flex items-center justify-center px-8 py-4 text-black font-black text-sm rounded-full transition-opacity hover:opacity-85"
-          style={{ backgroundColor: ORANGE }}
+          style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
         >
-          진단 상담 신청하기 →
+          유선 상담 신청하기 →
         </button>
       </div>
     </Section>
@@ -1333,12 +998,6 @@ export default function Home() {
         <Hero onOpenModal={() => setModalOpen(true)} />
         <BrandPartners />
         <Services />
-        <WhyNow />
-        <Solution />
-        <CoreAdvantages />
-        <CaseStudy />
-        <Pricing onOpenPdfGate={() => setPdfGateOpen(true)} />
-        <PartnerFit />
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
