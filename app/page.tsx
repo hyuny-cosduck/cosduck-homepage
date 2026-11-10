@@ -26,7 +26,7 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div className="bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <div className="w-full mx-auto px-8 lg:px-16 flex items-center justify-between h-16">
         <a href="#">
           <CosduckLogo />
         </a>
@@ -556,8 +556,10 @@ function FloatingCTA({ onOpenModal }: { onOpenModal: () => void }) {
 
     const hero = document.querySelector("#hero");
     const contact = document.querySelector("#contact");
+    const footer = document.querySelector("footer");
     if (hero) heroObserver.observe(hero);
     if (contact) contactObserver.observe(contact);
+    if (footer) contactObserver.observe(footer);
 
     return () => { heroObserver.disconnect(); contactObserver.disconnect(); };
   }, []);
@@ -597,56 +599,49 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
         }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-40 pb-28">
-        {/* Badge */}
-        <span
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs font-bold mb-8"
-          style={{ backgroundColor: BLUE }}
-        >
-          TikTok Shop AI Partner
-        </span>
+      <div className="relative max-w-7xl mx-auto px-8 lg:px-16 pt-40 pb-28">
+        <div className="flex items-center gap-8 md:gap-16">
+          {/* Left — text */}
+          <div className="flex-1">
+            <span
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs font-bold mb-8"
+              style={{ backgroundColor: BLUE }}
+            >
+              TikTok Shop AI Partner
+            </span>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-5 text-black" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-          <span style={{ color: ORANGE }}>TikTok Shop</span> 자동화 파트너
-        </h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-5 text-black" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <span style={{ color: ORANGE }}>TikTok Shop</span> 자동화 파트너
+            </h1>
 
-        <p className="text-sm text-gray-500 max-w-2xl mb-8 leading-relaxed">
-          틱톡샵 인비테이션 자동 발송 | 틱톡샵 샘플 자동 수락 | 틱톡샵 콘텐츠용 가이드라인 자동 전달 | 틱톡샵 Customer Message 자동 CS처리 | 틱톡샵 제품리뷰 체험단 | 틱톡샵 크리에이터풀 US 365k+ &amp; ID 474k+ | 틱톡샵 Shop Ads 예산 자동 조절
-        </p>
+            <p className="text-sm text-gray-500 max-w-lg mb-8 leading-relaxed">
+              틱톡샵 인비테이션 자동 발송 | 틱톡샵 샘플 자동 수락 | 틱톡샵 콘텐츠용 가이드라인 자동 전달 | 틱톡샵 Customer Message 자동 CS처리 | 틱톡샵 제품리뷰 체험단 | 틱톡샵 크리에이터풀 US 365k+ &amp; ID 474k+ | 틱톡샵 Shop Ads 예산 자동 조절
+            </p>
 
-        <div className="flex flex-row gap-3">
-          <button
-            onClick={onOpenModal}
-            className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-            style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
-          >
-            솔루션 신청 →
-          </button>
-          <a
-            href="#services"
-            className="inline-flex items-center justify-center px-7 py-3.5 text-white font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-            style={{ backgroundColor: BLUE, fontFamily: "'Unbounded', sans-serif" }}
-          >
-            성과 보기
-          </a>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-12 pt-8 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: 600,   suffix: "K/월", label: "파트너 브랜드 월 최고 매출 (US)", prefix: "$", color: BLUE   },
-            { value: 29619, suffix: "개",   label: "6주 누적 판매 달성",              prefix: "",  color: BLUE   },
-            { value: 6,     suffix: "개",   label: "파트너 브랜드 운영 (1년)",          prefix: "",  color: ORANGE },
-            { value: 4,     suffix: "개월", label: "샵티어 T5 달성 기간",              prefix: "",  color: ORANGE },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-2xl md:text-3xl font-black" style={{ color: s.color, fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-                {s.prefix}<Counter value={s.value} suffix={s.suffix} />
-              </div>
-              <div className="text-sm text-gray-400 mt-1">{s.label}</div>
+            <div className="flex flex-row gap-3">
+              <button
+                onClick={onOpenModal}
+                className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
+                style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
+              >
+                솔루션 신청 →
+              </button>
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center px-7 py-3.5 text-white font-bold rounded-full text-sm transition-opacity hover:opacity-80"
+                style={{ backgroundColor: BLUE, fontFamily: "'Unbounded', sans-serif" }}
+              >
+                성과 보기
+              </a>
             </div>
-          ))}
+          </div>
+
+          {/* Right — bot illustration */}
+          <div className="hidden md:block shrink-0" style={{ marginLeft: "-2rem" }}>
+            <img src="/bot_brand.png" alt="Cosduck Bot & Brand" style={{ width: "380px" }} />
+          </div>
         </div>
+
       </div>
     </section>
   );
@@ -740,7 +735,7 @@ function BrandPartners() {
   ];
 
   return (
-    <section className="py-10 sm:py-14 bg-gray-50 border-y border-gray-100">
+    <section className="py-10 sm:py-14 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <p className="text-center text-lg sm:text-2xl font-black text-gray-700 mb-6">코스덕과 함께 해온 브랜드들</p>
       </div>
@@ -807,8 +802,9 @@ function Services() {
       <Title>직접 해봤기에, 자동화할 수 있습니다</Title>
       <Sub>틱톡샵 운영 전 과정을 수동으로 대행해 본 경험이, 지금의 자동화 솔루션을 만들었습니다.</Sub>
 
-      {/* Before → After */}
-      <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      {/* Before → After + 봇 */}
+      <div className="flex gap-5 max-w-5xl mx-auto items-stretch">
+      <div className="grid md:grid-cols-2 gap-5 flex-1">
         {/* Before */}
         <div className="bg-white rounded-2xl p-8 border border-gray-200">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-400 border border-gray-200 mb-5">
@@ -868,10 +864,18 @@ function Services() {
           </div>
         </div>
       </div>
+      {/* 봇 일러스트 오른쪽 */}
+      <div className="hidden md:flex items-center shrink-0">
+        <img src="/bot_set.png" alt="코스덕 자동화 봇" className="w-52 lg:w-60" />
+      </div>
+      </div>
 
       {/* 타임라인 — 하나의 카드에 4개 브랜드 */}
       <div className="mt-8 rounded-2xl border border-gray-200 p-5 sm:p-8 bg-white max-w-4xl mx-auto">
-        <h3 className="text-sm font-black text-black mb-6">수동 대행으로 만든 성과</h3>
+        <div className="flex items-center gap-3 mb-6">
+          <img src="/bot_laptop.png" alt="데이터 대시보드" className="w-12 h-12" />
+          <h3 className="text-sm font-black text-black">수동 대행으로 만든 성과</h3>
+        </div>
         <div className="space-y-8">
           {brands.map((b) => {
             const lastWeek = b.steps[b.steps.length - 1].week;
@@ -927,11 +931,47 @@ function Services() {
 }
 
 
+// ─── REVIEW PROGRAM ──────────────────────────────────────────────────────────
+function ReviewProgram() {
+  return (
+    <Section id="review" bg="bg-white">
+      <div className="flex items-start gap-4 mb-6">
+        <div>
+          <Badge>Plus · Review Program</Badge>
+          <Title>코스덕 유저 풀로 틱톡샵 체험단도 운영합니다</Title>
+        </div>
+        <img src="/bot_products.png" alt="제품" className="hidden sm:block w-20 shrink-0" />
+      </div>
+      <Sub>코스덕 체험단 유저들이 미국에 새로 진출한 브랜드의 제품을 먼저 써보고, 솔직한 리뷰를 남깁니다.</Sub>
+
+      <div className="flex items-center justify-center gap-3 mt-8 max-w-3xl mx-auto">
+        {[
+          { num: "01", icon: "📋", title: "체험단 캠페인 오픈", desc: "신제품 출시 시 코스덕 솔루션으로 제품 체험단 캠페인을 엽니다." },
+          { num: "02", icon: "🛒", title: "코스덕 유저 참여", desc: "캠페인에 참여한 코스덕 유저들이 직접 구매하고 사용합니다." },
+          { num: "03", icon: "⭐", title: "샵 리뷰 작성", desc: "실사용 후기를 샵 리뷰로 남기고, 캠페인 현황도 투명하게 관리합니다." },
+        ].map((step, i) => (
+          <div key={step.num} className="flex items-center gap-3">
+            <div className="rounded-2xl border border-gray-200 p-5 bg-gray-50 text-center w-44 shrink-0">
+              <div className="text-2xl mb-2">{step.icon}</div>
+              <div className="text-[10px] font-black mb-1" style={{ color: BLUE }}>{step.num}</div>
+              <h3 className="text-sm font-black text-black mb-1.5">{step.title}</h3>
+              <p className="text-[10px] text-gray-500 leading-relaxed">{step.desc}</p>
+            </div>
+            {i < 2 && <span className="text-gray-300 text-xl font-bold shrink-0">→</span>}
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 function Contact({ onOpenModal }: { onOpenModal: () => void }) {
   return (
-    <Section id="contact" bg="bg-white">
+    <section id="contact" className="py-8 md:py-12 bg-white" style={{ scrollMarginTop: "7rem" }}>
+      <div className="max-w-6xl mx-auto px-6">
       <div className="max-w-2xl mx-auto text-center">
+        <img src="/bot_wink.png" alt="코스덕 봇" className="w-40 mx-auto mb-4" />
         <Badge>Next Step</Badge>
         <Title>
           지금 바로 받아보세요
@@ -946,7 +986,8 @@ function Contact({ onOpenModal }: { onOpenModal: () => void }) {
           유선 상담 신청하기 →
         </button>
       </div>
-    </Section>
+      </div>
+    </section>
   );
 }
 
@@ -998,6 +1039,7 @@ export default function Home() {
         <Hero onOpenModal={() => setModalOpen(true)} />
         <BrandPartners />
         <Services />
+        <ReviewProgram />
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
