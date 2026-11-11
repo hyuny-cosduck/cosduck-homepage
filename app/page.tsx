@@ -302,27 +302,38 @@ function ContactModal({ onClose }: { onClose: () => void }) {
 
 // ─── PDF Gate Modal ──────────────────────────────────────────────────────────
 function PdfGateModal({ onClose }: { onClose: () => void }) {
-  const [form, setForm] = useState({ brand: "", company: "", name: "", email: "", phone: "", brandSite: "", interest: "", hasTiktokShop: "", direction: "" });
+  const [form, setForm] = useState({ brand: "", company: "", name: "", email: "", phone: "", brandSite: "", interests: [] as string[], startDate: "" });
   const [status, setStatus] = useState<"idle" | "loading">("idle");
+  const [interestOpen, setInterestOpen] = useState(false);
 
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+  const toggleInterest = (v: string) =>
+    setForm((f) => ({
+      ...f,
+      interests: f.interests.includes(v) ? f.interests.filter((i) => i !== v) : [...f.interests, v],
+    }));
 
-  const interests = [
-    "틱톡샵 운영 대행",
-    "크리에이터 시딩",
-    "틱톡샵 개설/초기 세팅",
-    "기타",
+  const interestOptions = [
+    "인비테이션 대량 발송",
+    "IM Card 발송",
+    "CS 처리",
+    "샘플 신청 수락",
+    "가이드라인 전달",
+    "제품 체험단",
+    "GMV Max 연동 서비스",
+    "크리에이터 연락처 수집",
+    "크리에이터 배치태깅",
   ];
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.interest || !form.hasTiktokShop) return;
+    if (form.interests.length === 0) return;
     setStatus("loading");
     try {
       await fetch("/api/pdf-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, interest: form.interests.join(", ") }),
       });
     } catch {
       // still open the PDF even if Slack fails
@@ -396,58 +407,55 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
               placeholder="예) 010-1234-5678"
             />
           </div>
-          <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1.5">
-              관심 서비스를 선택해 주세요 <span className="text-red-500">*</span>
+          <div className="relative">
+            <label className="text-xs font-bold text-gray-500 block mb-1">
+              관심 서비스 (복수 선택 가능) <span className="text-red-500">*</span>
             </label>
-            <div className="space-y-2">
-              {interests.map((v) => (
-                <label
-                  key={v}
-                  onClick={() => set("interest", v)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-colors ${
-                    form.interest === v ? "border-black bg-gray-50" : "border-gray-200"
-                  }`}
-                >
-                  <div
-                    className="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                    style={{
-                      borderColor: form.interest === v ? "black" : "#D1D5DB",
-                    }}
+            <button
+              type="button"
+              onClick={() => setInterestOpen((o) => !o)}
+              className={`w-full border rounded-xl px-4 py-2.5 text-sm text-left flex items-center justify-between focus:outline-none transition-colors ${
+                interestOpen ? "border-black" : "border-gray-200"
+              }`}
+            >
+              <span className={form.interests.length ? "text-gray-800" : "text-gray-400"}>
+                {form.interests.length ? form.interests.join(", ") : "서비스를 선택해 주세요"}
+              </span>
+              <svg className={`w-4 h-4 text-gray-400 transition-transform ${interestOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            {interestOpen && (
+              <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-lg max-h-56 overflow-y-auto">
+                {interestOptions.map((v) => (
+                  <label
+                    key={v}
+                    className="flex items-center gap-3 px-4 py-2.5 cursor-pointer hover:bg-gray-50 transition-colors"
+                    onClick={() => toggleInterest(v)}
                   >
-                    {form.interest === v && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-black" />
-                    )}
-                  </div>
-                  <span className="text-sm text-gray-700">{v}</span>
-                </label>
-              ))}
-            </div>
+                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
+                      form.interests.includes(v) ? "border-black bg-black" : "border-gray-300"
+                    }`}>
+                      {form.interests.includes(v) && (
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                      )}
+                    </div>
+                    <span className="text-sm text-gray-700">{v}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
           <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">틱톡샵 개설 여부 <span className="text-red-500">*</span></label>
-            <div className="flex gap-2">
-              {["예", "아니오"].map((v) => (
-                <button key={v} type="button" onClick={() => set("hasTiktokShop", v)}
-                  className={`flex-1 py-2 rounded-xl text-sm font-bold border transition-colors ${form.hasTiktokShop === v ? "bg-black text-white border-black" : "border-gray-200 text-gray-500"}`}>
-                  {v}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div>
-            <label className="text-xs font-bold text-gray-500 block mb-1">원하는 대행 역량 및 방향성 <span className="text-red-500">*</span></label>
+            <label className="text-xs font-bold text-gray-500 block mb-1">예상하는 시작날짜</label>
             <input
-              required
-              value={form.direction}
-              onChange={(e) => set("direction", e.target.value)}
+              value={form.startDate}
+              onChange={(e) => set("startDate", e.target.value)}
               className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-black"
-              placeholder="예) 틱톡샵 풀 대행, 크리에이터 운영 중심"
+              placeholder="예) 2026년 12월, 미정"
             />
           </div>
           <button
             type="submit"
-            disabled={status === "loading" || !form.interest || !form.hasTiktokShop}
+            disabled={status === "loading" || form.interests.length === 0}
             className="w-full py-3.5 rounded-full text-black font-bold text-sm transition-opacity hover:opacity-80 disabled:opacity-50 mt-2"
             style={{ backgroundColor: ORANGE }}
           >
