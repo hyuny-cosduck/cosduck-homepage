@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="ko" className="h-full antialiased">
       <head>
         <meta name="naver-site-verification" content="e205fd02f9ad7d539b3bec43e0bab243cde8b2c8" />
+        <meta name="msvalidate.01" content="3FD890DD76B00CCE6B977511A5278E22" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
