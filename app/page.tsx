@@ -918,7 +918,7 @@ function Services() {
       </div>
       {/* 봇 일러스트 오른쪽 */}
       <div className="hidden md:flex items-center shrink-0">
-        <img src="/bot-squad.png" alt="코스덕 자동화 봇" className="w-64 lg:w-80" />
+        <img src="/bot-squad.png" alt="코스덕 자동화 봇" className="w-80 lg:w-96" />
       </div>
       </div>
 
