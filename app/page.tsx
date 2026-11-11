@@ -1048,7 +1048,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <Section id="faq" bg="bg-gray-50">
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Badge>FAQ</Badge>
         <Title>자주 묻는 질문</Title>
         <Sub>궁금한 점이 있으시면 언제든 상담 신청해 주세요.</Sub>
