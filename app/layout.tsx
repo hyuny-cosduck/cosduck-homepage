@@ -95,6 +95,51 @@ export default function RootLayout({
                   description:
                     "인비테이션 대량 발송, 샘플 자동 수락, 가이드라인 자동 전달, CS 자동 처리 등 TikTok Shop 반복 업무 자동화",
                 },
+                {
+                  "@type": "FAQPage",
+                  mainEntity: [
+                    {
+                      "@type": "Question",
+                      name: "코스덕 서비스 비용은 어떻게 되나요?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "인비테이션 발송만 이용하실 경우 월 100만 원이며, IM Card 발송과 크리에이터 배치태깅까지 포함한 풀 패키지는 월 190만 원입니다. 그 외 맞춤 서비스는 상담을 통해 안내드립니다.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "코스덕 최소 계약 기간이 있나요?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "기본 계약 기간은 2개월 단위입니다.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "코스덕은 어떤 국가를 지원하나요?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "현재 미국(US)과 인도네시아(ID)를 중심으로 운영하고 있으며, 그 외 국가도 상담을 통해 지원 가능합니다.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "틱톡샵을 아직 개설하지 않았는데 코스덕 서비스를 이용할 수 있나요?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "네, 가능합니다. 틱톡샵 계정 개설부터 초기 세팅(카테고리 인증, 상품 리스팅, Ads 연동 등)까지 모두 대행해드립니다.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "코스덕 서비스 이용 후 성과는 얼마나 걸리나요?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "브랜드와 카테고리에 따라 다르지만, 보통 운영 시작 후 2~4주 내에 첫 어필리에이트 매출이 발생하고, 2~3개월 차에 의미 있는 성장세를 확인하실 수 있습니다.",
+                      },
+                    },
+                  ],
+                },
               ],
             }),
           }}

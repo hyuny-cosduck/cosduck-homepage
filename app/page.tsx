@@ -520,6 +520,7 @@ function PdfGateModal({ onClose }: { onClose: () => void }) {
 const SCROLL_SECTIONS = [
   { id: "hero",         label: "홈" },
   { id: "services",     label: "서비스" },
+  { id: "faq",          label: "FAQ" },
   { id: "contact",      label: "문의" },
 ];
 
@@ -1017,6 +1018,70 @@ function ReviewProgram() {
   );
 }
 
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+const faqs = [
+  {
+    q: "비용은 어떻게 되나요?",
+    a: "인비테이션 발송만 이용하실 경우 월 100만 원이며, IM Card 발송과 크리에이터 배치태깅까지 포함한 풀 패키지는 월 190만 원입니다. 그 외 맞춤 서비스는 상담을 통해 안내드립니다.",
+  },
+  {
+    q: "최소 계약 기간이 있나요?",
+    a: "기본 계약 기간은 2개월 단위입니다.",
+  },
+  {
+    q: "최소 조건이 있나요?",
+    a: "별도의 최소 조건은 없습니다. 브랜드 규모와 관계없이 상담 후 바로 시작하실 수 있습니다.",
+  },
+  {
+    q: "어떤 국가를 지원하나요?",
+    a: "현재 미국(US)과 인도네시아(ID)를 중심으로 운영하고 있으며, 그 외 국가도 상담을 통해 지원 가능합니다.",
+  },
+  {
+    q: "틱톡샵을 아직 개설하지 않았는데 가능한가요?",
+    a: "네, 가능합니다. 틱톡샵 계정 개설부터 초기 세팅(카테고리 인증, 상품 리스팅, Ads 연동 등)까지 모두 대행해드립니다.",
+  },
+  {
+    q: "성과는 얼마나 걸리나요?",
+    a: "브랜드와 카테고리에 따라 다르지만, 보통 운영 시작 후 2~4주 내에 첫 어필리에이트 매출이 발생하고, 2~3개월 차에 의미 있는 성장세를 확인하실 수 있습니다.",
+  },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <Section id="faq" bg="bg-gray-50">
+      <div className="max-w-2xl mx-auto">
+        <Badge>FAQ</Badge>
+        <Title>자주 묻는 질문</Title>
+        <Sub>궁금한 점이 있으시면 언제든 상담 신청해 주세요.</Sub>
+        <div className="space-y-3">
+          {faqs.map((faq, i) => (
+            <div key={i} className="border border-gray-200 rounded-xl bg-white overflow-hidden">
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full flex items-center justify-between px-5 py-4 text-left"
+              >
+                <span className="text-sm font-bold text-black">{faq.q}</span>
+                <svg
+                  className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${open === i ? "rotate-180" : ""}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {open === i && (
+                <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 function Contact({ onOpenModal }: { onOpenModal: () => void }) {
   return (
@@ -1092,6 +1157,7 @@ export default function Home() {
         <BrandPartners />
         <Services />
         <ReviewProgram />
+        <FAQ />
         <Contact onOpenModal={() => setModalOpen(true)} />
       </main>
       <Footer />
