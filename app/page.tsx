@@ -918,7 +918,7 @@ function Services() {
       </div>
       {/* 봇 일러스트 오른쪽 */}
       <div className="hidden md:flex items-center shrink-0" style={{ WebkitMaskImage: "linear-gradient(to right, black 60%, transparent 100%)", maskImage: "linear-gradient(to right, black 60%, transparent 100%)" }}>
-        <img src="/artboard-1.png" alt="코스덕 자동화 봇" className="w-64 lg:w-80" />
+        <img src="/bot-squad.png" alt="코스덕 자동화 봇" className="w-64 lg:w-80" />
       </div>
       </div>
 
