@@ -1052,7 +1052,7 @@ function FAQ() {
         <Badge>FAQ</Badge>
         <Title>자주 묻는 질문</Title>
         <Sub>궁금한 점이 있으시면 언제든 상담 신청해 주세요.</Sub>
-        <div className="max-w-3xl space-y-3">
+        <div className="max-w-3xl mx-auto space-y-3">
           {faqs.map((faq, i) => (
             <div key={i} className="border border-gray-200 rounded-xl bg-white overflow-hidden">
               <button
