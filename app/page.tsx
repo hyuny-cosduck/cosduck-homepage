@@ -863,19 +863,21 @@ function Services() {
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-400 border border-gray-200 mb-5">
             Before
           </span>
-          <h3 className="text-lg font-black text-gray-400 mb-1">수동 초기세팅 대행</h3>
+          <h3 className="text-lg font-black text-gray-400 mb-1">수동 운영 대행</h3>
           <p className="text-gray-400 text-xs mb-5">직접 운영하며 쌓은 노하우</p>
           <div className="space-y-2">
             {[
-              "Business Center ↔ Seller Center ↔ Ads Center 연동",
-              "카테고리 인증",
-              "상품 리스팅",
+              "계정 연동",
+              "카테고리 인증 및 상품 리스팅",
               "FBT Inbound Order",
-              "Shop Ads 세팅",
-              "TikTok Chatbot 세팅",
+              "Shop Ads 세팅 및 운영",
+              "데일리 CS 처리",
               "상시할인가 세팅",
-              "IPPC 서류 등록",
+              "IPPC 서류 등록 및 리셀러 단속",
               "초기 리뷰 부스팅",
+              "인비테이션 대량 발송",
+              "샘플 대량 발송",
+              "Creative Boost 조정",
             ].map((item) => (
               <div key={item} className="flex items-start gap-1.5 text-xs text-gray-400 line-through">
                 <span className="mt-0.5 no-underline">✓</span>{item}
