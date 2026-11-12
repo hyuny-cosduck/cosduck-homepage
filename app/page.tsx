@@ -650,7 +650,7 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             </h1>
 
             <p className="text-sm text-gray-500 max-w-lg mb-8 leading-relaxed">
-              틱톡샵 인비테이션 자동 발송 | 틱톡샵 샘플 자동 수락 | 틱톡샵 콘텐츠용 가이드라인 자동 전달 | 틱톡샵 Customer Message 자동 CS처리 | 틱톡샵 제품리뷰 체험단 | 틱톡샵 크리에이터풀 US 365k+ &amp; ID 474k+ | 틱톡샵 Shop Ads 예산 자동 조절
+              인비테이션 대량 발송 | 샘플 신청 조건 수락 | 콘텐츠용 가이드라인 전달 | 24/7 CS처리 | 제품 리뷰 체험단 | 크리에이터풀 US 365k+ &amp; ID 474k+ | Shop Ads 예산 조정
             </p>
 
             <div className="flex flex-row gap-3">
@@ -962,6 +962,11 @@ function Services() {
         <p className="text-center text-[10px] text-gray-400 mt-6 pt-4 border-t border-gray-100">
           * 실제 운영 데이터 기준이며, 샵·상품에 따라 결과는 달라질 수 있습니다.
         </p>
+        <div className="text-center mt-4">
+          <a href="/cases" className="text-xs font-bold hover:opacity-70 transition-opacity" style={{ color: ORANGE }}>
+            케이스 스터디 자세히 보기 →
+          </a>
+        </div>
       </div>
     </Section>
   );
@@ -1109,6 +1114,8 @@ function Footer() {
             <a href="/services/automation" className="hover:text-gray-600 transition-colors">자동화 솔루션</a>
             <span className="text-gray-300">|</span>
             <a href="/services/review-program" className="hover:text-gray-600 transition-colors">체험단</a>
+            <span className="text-gray-300">|</span>
+            <a href="/cases" className="hover:text-gray-600 transition-colors">케이스 스터디</a>
           </div>
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <a href="/terms" className="hover:text-black transition-colors">이용약관</a>
