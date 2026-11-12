@@ -15,12 +15,14 @@ function CosduckLogo() {
 }
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
-function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpenModal: () => void }) {
+function Nav({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { href: "#pdf-gate", label: "서비스 소개서" },
     { href: "#services", label: "서비스" },
+    { href: "#results", label: "대행 성과" },
+    { href: "#review", label: "체험단" },
+    { href: "#faq", label: "FAQ" },
   ];
 
   return (
@@ -32,33 +34,23 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
         </a>
 
         <div className="hidden md:flex items-center gap-7 text-sm font-medium">
-          {links.map((l) =>
-            l.href === "#pdf-gate" ? (
-              <button
-                key={l.href}
-                onClick={onOpenPdfGate}
-                className="text-gray-600 transition-colors hover:text-black"
-              >
-                {l.label}
-              </button>
-            ) : (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-gray-600 transition-colors hover:text-black"
-              >
-                {l.label}
-              </a>
-            )
-          )}
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-gray-600 transition-colors hover:text-black"
+            >
+              {l.label}
+            </a>
+          ))}
         </div>
 
         <button
-          onClick={onOpenModal}
+          onClick={onOpenPdfGate}
           className="hidden md:inline-flex items-center px-5 py-2.5 text-black text-sm font-bold rounded-full transition-opacity hover:opacity-80"
           style={{ backgroundColor: ORANGE }}
         >
-          상담 신청
+          소개자료 열람
         </button>
 
         <button
@@ -78,32 +70,22 @@ function Nav({ onOpenPdfGate, onOpenModal }: { onOpenPdfGate: () => void; onOpen
 
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-6 pb-4 shadow-lg">
-          {links.map((l) =>
-            l.href === "#pdf-gate" ? (
-              <button
-                key={l.href}
-                className="block w-full text-left py-3 text-sm font-medium text-gray-700 border-b border-gray-100 last:border-0"
-                onClick={() => { setMenuOpen(false); onOpenPdfGate(); }}
-              >
-                {l.label}
-              </button>
-            ) : (
-              <a
-                key={l.href}
-                href={l.href}
-                className="block py-3 text-sm font-medium text-gray-700 border-b border-gray-100 last:border-0"
-                onClick={() => setMenuOpen(false)}
-              >
-                {l.label}
-              </a>
-            )
-          )}
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="block py-3 text-sm font-medium text-gray-700 border-b border-gray-100 last:border-0"
+              onClick={() => setMenuOpen(false)}
+            >
+              {l.label}
+            </a>
+          ))}
           <button
             className="mt-4 block w-full text-center px-5 py-3 text-black text-sm font-bold rounded-full"
             style={{ backgroundColor: ORANGE }}
-            onClick={() => { setMenuOpen(false); onOpenModal(); }}
+            onClick={() => { setMenuOpen(false); onOpenPdfGate(); }}
           >
-            상담 신청
+            소개자료 열람
           </button>
         </div>
       )}
@@ -926,7 +908,7 @@ function Services() {
       </div>
 
       {/* 타임라인 — 하나의 카드에 4개 브랜드 */}
-      <div className="mt-8 rounded-2xl border border-gray-200 p-5 sm:p-8 bg-white max-w-4xl mx-auto">
+      <div id="results" className="mt-8 rounded-2xl border border-gray-200 p-5 sm:p-8 bg-white max-w-4xl mx-auto" style={{ scrollMarginTop: "7rem" }}>
         <div className="flex items-center gap-3 mb-6">
           <img src="/bot_laptop.png" alt="데이터 대시보드" className="w-12 h-12" />
           <h3 className="text-sm font-black text-black">수동 대행으로 만든 성과</h3>
@@ -1145,7 +1127,7 @@ export default function Home() {
   const [pdfGateOpen, setPdfGateOpen] = useState(false);
   return (
     <>
-      <Nav onOpenPdfGate={() => setPdfGateOpen(true)} onOpenModal={() => setModalOpen(true)} />
+      <Nav onOpenPdfGate={() => setPdfGateOpen(true)} />
       {modalOpen && <ContactModal onClose={() => setModalOpen(false)} />}
       {pdfGateOpen && <PdfGateModal onClose={() => setPdfGateOpen(false)} />}
       <ScrollDots />
