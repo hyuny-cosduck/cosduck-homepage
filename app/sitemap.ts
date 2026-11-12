@@ -13,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/cases/us-beauty-t4-in-6-weeks`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/cases/us-cosmetics-1000-samples-weekly`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/cases/id-beauty-20m-daily-revenue`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/guides`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${base}/guides/us-tiktok-shop-setup`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/guides/id-tiktok-shop-cosmetics-setup`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/guides/tiktok-shop-beauty-category-approval`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/guides/tiktok-shop-fbt-guide`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];

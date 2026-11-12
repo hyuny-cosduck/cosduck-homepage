@@ -1,16 +1,21 @@
 # Cosduck (코스덕)
 
-> K-뷰티 브랜드의 TikTok Shop 글로벌 성장 파트너
+> TikTok Shop 공식 파트너(대행사) · K-뷰티 브랜드의 글로벌 틱톡샵 성장 파트너
 
 ## 회사 소개
 
-Cosduck(코스덕)은 K-뷰티 브랜드가 TikTok Shop에서 성장할 수 있도록 돕는 운영 대행사입니다.
+코스덕은 (주)마야크루가 운영하는 TikTok Shop 공식 파트너(대행사)입니다.
+K-뷰티 브랜드가 TikTok Shop에서 성장할 수 있도록 입점 대행, AI 자동화 솔루션, 크리에이터 시딩을 제공합니다.
 데이터 기반 운영, 자체 분석 솔루션, 크리에이터 네트워크를 통해 브랜드의 글로벌 진출을 설계하고 실행합니다.
-현재 북미(US)와 인도네시아(ID) 시장에서 활동하고 있습니다.
+현재 미국(US)과 인도네시아(ID) 시장에서 활동하고 있습니다.
+
+- 법인명: (주)마야크루
+- 서비스명: 코스덕 (Cosduck)
+- TikTok Shop 공식 파트너
 
 ## 주요 서비스
 
-### 1. 수동 초기 세팅 대행
+### 1. 틱톡샵 입점·초기세팅 대행
 직접 운영하며 쌓은 노하우를 기반으로 TikTok Shop 초기 세팅을 대행합니다.
 - Business Center ↔ Seller Center ↔ Ads Center 연동
 - 카테고리 인증, 상품 리스팅
@@ -42,5 +47,10 @@ Cosduck(코스덕)은 K-뷰티 브랜드가 TikTok Shop에서 성장할 수 있�
 ## 주요 페이지
 
 - 홈: https://cosduck.com
+- 서비스 — 입점·초기세팅 대행: https://cosduck.com/services/setup
+- 서비스 — 자동화 솔루션: https://cosduck.com/services/automation
+- 서비스 — 체험단: https://cosduck.com/services/review-program
+- 케이스 스터디: https://cosduck.com/cases
+- 가이드: https://cosduck.com/guides
 - 이용약관: https://cosduck.com/terms
 - 개인정보처리방침: https://cosduck.com/privacy

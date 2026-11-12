@@ -47,8 +47,8 @@ function Nav({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
 
         <button
           onClick={onOpenPdfGate}
-          className="hidden md:inline-flex items-center px-5 py-2.5 text-black text-sm font-bold rounded-full transition-opacity hover:opacity-80"
-          style={{ backgroundColor: ORANGE }}
+          className="hidden md:inline-flex items-center px-5 py-2.5 text-white text-sm font-bold rounded-full transition-opacity hover:opacity-80"
+          style={{ backgroundColor: BLUE }}
         >
           소개자료 열람
         </button>
@@ -81,8 +81,8 @@ function Nav({ onOpenPdfGate }: { onOpenPdfGate: () => void }) {
             </a>
           ))}
           <button
-            className="mt-4 block w-full text-center px-5 py-3 text-black text-sm font-bold rounded-full"
-            style={{ backgroundColor: ORANGE }}
+            className="mt-4 block w-full text-center px-5 py-3 text-white text-sm font-bold rounded-full"
+            style={{ backgroundColor: BLUE }}
             onClick={() => { setMenuOpen(false); onOpenPdfGate(); }}
           >
             소개자료 열람
@@ -638,37 +638,24 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
         <div className="flex items-center gap-8 md:gap-16">
           {/* Left — text */}
           <div className="flex-1">
-            <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs font-bold mb-8"
-              style={{ backgroundColor: BLUE }}
-            >
-              TikTok Shop AI Partner
-            </span>
+            <img src="/tiktok-for-business.png" alt="TikTok for Business Official Partner" className="h-9 w-auto mb-8" />
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] tracking-tight mb-5 text-black" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-              <span style={{ color: ORANGE }}>TikTok Shop</span> 자동화 파트너
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.1] tracking-tight mb-5 text-black" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <span style={{ color: ORANGE }}>TikTok Shop</span><br />
+              자동화 파트너
             </h1>
 
-            <p className="text-sm text-gray-500 max-w-lg mb-8 leading-relaxed">
+            <p className="text-xs text-gray-400 max-w-lg mb-8 leading-relaxed">
               인비테이션 대량 발송 | 샘플 신청 조건 수락 | 콘텐츠용 가이드라인 전달 | 24/7 CS처리 | 제품 리뷰 체험단 | 크리에이터풀 US 365k+ &amp; ID 474k+ | Shop Ads 예산 조정
             </p>
 
-            <div className="flex flex-row gap-3">
-              <button
-                onClick={onOpenModal}
-                className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-                style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
-              >
-                솔루션 신청 →
-              </button>
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center px-7 py-3.5 text-white font-bold rounded-full text-sm transition-opacity hover:opacity-80"
-                style={{ backgroundColor: BLUE, fontFamily: "'Unbounded', sans-serif" }}
-              >
-                성과 보기
-              </a>
-            </div>
+            <button
+              onClick={onOpenModal}
+              className="inline-flex items-center justify-center px-7 py-3.5 text-black font-bold rounded-full text-sm transition-opacity hover:opacity-80"
+              style={{ backgroundColor: ORANGE, fontFamily: "'Unbounded', sans-serif" }}
+            >
+              솔루션 신청 →
+            </button>
           </div>
 
           {/* Right — bot illustration */}
@@ -838,8 +825,8 @@ function Services() {
       <Sub>틱톡샵 운영 전 과정을 수동으로 대행해 본 경험이, 지금의 자동화 솔루션을 만들었습니다.</Sub>
 
       {/* Before → After + 봇 */}
-      <div className="flex gap-5 max-w-5xl mx-auto items-stretch">
-      <div className="grid md:grid-cols-2 gap-5 flex-1">
+      <div className="flex flex-col md:flex-row gap-5 max-w-5xl mx-auto items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1">
         {/* Before */}
         <div className="bg-white rounded-2xl p-8 border border-gray-200">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-400 border border-gray-200 mb-5">
@@ -930,7 +917,25 @@ function Services() {
                 >
                   {b.label}
                 </span>
-                <div className="relative">
+                {/* 모바일: 세로 리스트 */}
+                <div className="flex flex-col gap-2 md:hidden">
+                  {b.steps.map((s, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="flex flex-col items-center shrink-0" style={{ width: "12px" }}>
+                        {i > 0 && <div className="w-0.5 h-2" style={{ backgroundColor: `${ORANGE}40` }} />}
+                        <div
+                          className={`rounded-full shrink-0 ${s.highlight ? "w-3 h-3" : "w-2.5 h-2.5"}`}
+                          style={{ backgroundColor: s.highlight ? ORANGE : "#ccc" }}
+                        />
+                        {i < b.steps.length - 1 && <div className="w-0.5 h-2" style={{ backgroundColor: `${ORANGE}40` }} />}
+                      </div>
+                      <span className="text-[10px] font-bold shrink-0 w-12" style={{ color: s.highlight ? ORANGE : "#999" }}>{s.time}</span>
+                      <p className={`text-[10px] leading-tight ${s.highlight ? "font-black text-black" : "text-gray-500"}`}>{s.text}</p>
+                    </div>
+                  ))}
+                </div>
+                {/* 데스크톱: 가로 타임라인 */}
+                <div className="relative hidden md:block">
                   <div className="absolute top-[5px] left-0 h-0.5" style={{ backgroundColor: ORANGE, width: `${endPct}%` }} />
                   <div className="flex relative">
                     {b.steps.map((s, i) => (
@@ -952,7 +957,6 @@ function Services() {
                       </div>
                     ))}
                   </div>
-                  {/* spacer */}
                   <div className="h-14" />
                 </div>
               </div>
@@ -986,20 +990,19 @@ function ReviewProgram() {
       </div>
       <Sub>코스덕 체험단 유저들이 미국에 새로 진출한 브랜드의 제품을 먼저 써보고, 솔직한 리뷰를 남깁니다.</Sub>
 
-      <div className="flex items-center justify-center gap-3 mt-8 max-w-3xl mx-auto">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-8 max-w-3xl mx-auto">
         {[
-          { num: "01", icon: "📋", title: "체험단 캠페인 오픈", desc: "신제품 출시 시 코스덕 솔루션으로 제품 체험단 캠페인을 엽니다." },
-          { num: "02", icon: "🛒", title: "코스덕 유저 참여", desc: "캠페인에 참여한 코스덕 유저들이 직접 구매하고 사용합니다." },
-          { num: "03", icon: "⭐", title: "샵 리뷰 작성", desc: "실사용 후기를 샵 리뷰로 남기고, 캠페인 현황도 투명하게 관리합니다." },
-        ].map((step, i) => (
-          <div key={step.num} className="flex items-center gap-3">
-            <div className="rounded-2xl border border-gray-200 p-5 bg-gray-50 text-center w-44 shrink-0">
-              <div className="text-2xl mb-2">{step.icon}</div>
-              <div className="text-[10px] font-black mb-1" style={{ color: BLUE }}>{step.num}</div>
-              <h3 className="text-sm font-black text-black mb-1.5">{step.title}</h3>
-              <p className="text-[10px] text-gray-500 leading-relaxed">{step.desc}</p>
+          { num: "01", icon: "📋", title: "캠페인 오픈", desc: "신제품 출시 시 코스덕 솔루션으로 제품 체험단 캠페인을 엽니다." },
+          { num: "02", icon: "🛒", title: "유저 참여", desc: "캠페인에 참여한 코스덕 유저들이 직접 구매하고 사용합니다." },
+          { num: "03", icon: "⭐", title: "리뷰 작성", desc: "실사용 후기를 샵 리뷰로 남기고, 캠페인 현황도 투명하게 관리합니다." },
+        ].map((step) => (
+          <div key={step.num} className="rounded-2xl border border-gray-200 p-4 sm:p-5 bg-gray-50 text-center">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center mx-auto mb-2 sm:mb-3 text-lg sm:text-2xl">
+              {step.icon}
             </div>
-            {i < 2 && <span className="text-gray-300 text-xl font-bold shrink-0">→</span>}
+            <div className="text-[10px] font-black mb-1" style={{ color: BLUE }}>{step.num}</div>
+            <h3 className="text-xs sm:text-sm font-black text-black mb-1">{step.title}</h3>
+            <p className="text-[9px] sm:text-[10px] text-gray-500 leading-relaxed hidden sm:block">{step.desc}</p>
           </div>
         ))}
       </div>
@@ -1126,6 +1129,9 @@ function Footer() {
 
         {/* Business info */}
         <div className="border-t border-gray-200 pt-4 space-y-1 text-center">
+          <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed font-medium">
+            코스덕은 (주)마야크루가 운영하는 TikTok Shop 공식 파트너(대행사)입니다.
+          </p>
           <p className="text-[10px] sm:text-xs text-gray-400 leading-relaxed">
             대표: 오준호 &nbsp;|&nbsp; 사업자등록번호: 875-81-00475 &nbsp;|&nbsp; 법인등록번호: 110111-6212601
           </p>

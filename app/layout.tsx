@@ -4,14 +4,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cosduck.com"),
-  title: "Cosduck | K-뷰티 브랜드의 글로벌 틱톡샵 성장 파트너",
+  title: "Cosduck | TikTok Shop 공식 파트너 · K-뷰티 틱톡샵 대행사",
   description:
-    "데이터 기반 운영 · 자체 분석 솔루션 · 크리에이터 네트워크로 K-뷰티 브랜드의 TikTok Shop 성장을 설계하고 실행합니다.",
+    "코스덕은 TikTok Shop 공식 파트너(대행사)입니다. 데이터 기반 운영, AI 자동화 솔루션, 크리에이터 네트워크로 K-뷰티 브랜드의 미국·인도네시아 틱톡샵 성장을 설계하고 실행합니다.",
   keywords: ["TikTok Shop", "K-beauty", "K-뷰티", "틱톡샵", "cosduck", "코스덕", "에이전시", "틱톡샵 대행", "크리에이터 시딩", "AI 자동화"],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Cosduck | K-뷰티 글로벌 틱톡샵 성장 파트너",
-    description: "데이터 기반 운영 · 자체 분석 솔루션 · 크리에이터 네트워크",
+    title: "Cosduck | TikTok Shop 공식 파트너 · K-뷰티 틱톡샵 대행사",
+    description: "TikTok Shop 공식 파트너. K-뷰티 브랜드의 미국·인도네시아 틱톡샵 운영 대행 및 AI 자동화 솔루션.",
     url: "https://cosduck.com",
     images: ["/og.png"],
     locale: "ko_KR",
@@ -52,10 +52,12 @@ export default function RootLayout({
                 {
                   "@type": "Organization",
                   name: "Cosduck (코스덕)",
+                  legalName: "(주)마야크루",
+                  alternateName: ["코스덕", "Cosduck", "마야크루"],
                   url: "https://cosduck.com",
                   logo: "https://cosduck.com/cosduck-logo.png",
                   description:
-                    "K-뷰티 브랜드의 TikTok Shop 글로벌 성장을 설계하고 실행하는 자동화 파트너. 데이터 기반 운영, 자체 분석 솔루션, 크리에이터 네트워크를 제공합니다.",
+                    "코스덕은 (주)마야크루가 운영하는 TikTok Shop 공식 파트너(대행사)입니다. K-뷰티 브랜드의 미국·인도네시아 틱톡샵 입점, AI 자동화 운영, 크리에이터 시딩을 제공합니다.",
                   foundingDate: "2024",
                   address: {
                     "@type": "PostalAddress",
@@ -73,6 +75,8 @@ export default function RootLayout({
                   },
                   sameAs: [
                     "https://www.linkedin.com/company/cosduck",
+                    "https://www.wanted.co.kr/company/mayacrew",
+                    "https://apps.apple.com/app/cosduck/id6504504737",
                   ],
                 },
                 {
