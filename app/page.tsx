@@ -867,7 +867,7 @@ function Services() {
             ))}
           </div>
           <div className="mt-5 pt-4 border-t border-gray-100">
-            <p className="text-[10px] text-gray-400">이 경험이 있기에</p>
+            <a href="/services/setup" className="text-[10px] text-gray-400 hover:text-gray-600 transition-colors">자세히 보기 →</a>
           </div>
         </div>
 
@@ -897,7 +897,7 @@ function Services() {
             ))}
           </div>
           <div className="mt-5 pt-4 border-t" style={{ borderColor: `${ORANGE}30` }}>
-            <p className="text-[10px] font-bold" style={{ color: ORANGE }}>자동화가 가능합니다</p>
+            <a href="/services/automation" className="text-[10px] font-bold hover:opacity-70 transition-opacity" style={{ color: ORANGE }}>자세히 보기 →</a>
           </div>
         </div>
       </div>
@@ -998,6 +998,12 @@ function ReviewProgram() {
           </div>
         ))}
       </div>
+
+      <div className="text-center mt-6">
+        <a href="/services/review-program" className="text-xs font-bold hover:opacity-70 transition-opacity" style={{ color: BLUE }}>
+          자세히 보기 →
+        </a>
+      </div>
     </Section>
   );
 }
@@ -1097,6 +1103,13 @@ function Footer() {
         {/* Top row: logo + legal links */}
         <div className="flex flex-col items-center gap-3 mb-6">
           <CosduckLogo />
+          <div className="flex items-center gap-4 text-xs text-gray-400 mb-2">
+            <a href="/services/setup" className="hover:text-gray-600 transition-colors">입점·초기세팅</a>
+            <span className="text-gray-300">|</span>
+            <a href="/services/automation" className="hover:text-gray-600 transition-colors">자동화 솔루션</a>
+            <span className="text-gray-300">|</span>
+            <a href="/services/review-program" className="hover:text-gray-600 transition-colors">체험단</a>
+          </div>
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <a href="/terms" className="hover:text-black transition-colors">이용약관</a>
             <span className="text-gray-300">|</span>
